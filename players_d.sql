@@ -32,7 +32,7 @@ CREATE TABLE `players_d` (
   `playerid` varchar(50) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
-  `club1` varchar(100) NOT NULL,
+  `club` varchar(100) NOT NULL,
   `club2` varchar(100) NOT NULL,
   `club3` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -41,9 +41,9 @@ CREATE TABLE `players_d` (
 -- Dumping data for table `players_d`
 --
 
-INSERT INTO `players_d` (`SNO`, `playerid`, `firstname`, `lastname`, `club1`, `club2`, `club3`) VALUES
+INSERT INTO `players_d` (`SNO`, `playerid`, `firstname`, `lastname`, `club`, `club2`, `club3`) VALUES
 (1, '3002', 'sandy', 'lee', 'club2', '', ''),
-(15, '2001', 'yeswanth', 'godse', 'club1', '', ''),
+(15, '2001', 'yeswanth', 'godse', 'club', '', ''),
 (16, '1212', 'vamsi', 'lee', 'club3', '', ''),
 (17, '1212', 'vamsi', 'lee', 'club3', '', ''),
 (18, '1212', 'vamsi', 'sai', 'club3', '', '');
