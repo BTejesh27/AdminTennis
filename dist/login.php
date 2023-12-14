@@ -28,39 +28,52 @@ include 'connect.php';
                                 <label for="inputlname">Last Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputclub" type="name" placeholder="club " name="club" required />
-                                <label for="inputclub">Club</label>
-                            </div>
+    <select class="form-select" id="inputclub" name="club" required>
+        <option value="club1">Club 1</option>
+        <option value="club2">Club 2</option>
+        <option value="club3">Club 3</option>
+    </select>
+    <label for="inputclub">Club</label>
+</div>
+
 
                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                 <button class="login-form-button" type="submit" name="submit">Submit</button>
-
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
     <?php
-    if (isset($_POST['submit'])) {
-        // Sanitize input to prevent SQL injection
-        $playerid = $_POST["id"];
-        $firstname = $_POST["fname"];
-        $lastname = $_POST["lname"];
-        $club = $_POST["club"];
+if (isset($_POST['submit'])) {
+    // Sanitize input to prevent SQL injection
+    $playerid = $_POST["id"];
+    $firstname = $_POST["fname"];
+    $lastname = $_POST["lname"];
+    $club = $_POST["club"];
 
-        // Insert data into the database
-        $sql = "INSERT INTO players_d(playerid, firstname, lastname, club1) VALUES ('$playerid', '$firstname', '$lastname', '$club')";
+    // Check if the player already exists in the specified club
+    $checkQuery = "SELECT * FROM players_d WHERE playerid = '$playerid' AND club = '$club'";
+    $result = $conn->query($checkQuery);
 
-        if ($conn->query($sql) === TRUE) {
-           
+    if ($result->num_rows > 0) {
+        // Player already exists in the club, show an alert message
+        echo "<script>alert('Player already exists in this club!');</script>";
+    } else {
+        // Player does not exist in the club, proceed with the insertion
+        $insertQuery = "INSERT INTO players_d(playerid, firstname, lastname, club) VALUES ('$playerid', '$firstname', '$lastname', '$club')";
+
+        if ($conn->query($insertQuery) === TRUE) {
+            echo "<script>alert('Success!');</script>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $insertQuery . "<br>" . $conn->error;
         }
     }
-    ?>
+}
+?>
+
 </main>
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
@@ -76,3 +89,4 @@ include 'connect.php';
 </footer>
 </div>
 </div>
+

@@ -66,7 +66,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="club1.php">Club 1</a>
+                                <a class="nav-link" href="club.php">Club 1</a>
                                 <a class="nav-link" href="club2.php">Club 2</a>
                                 <a class="nav-link" href="club3.php">Club 3</a>
                             </nav>
@@ -119,7 +119,7 @@
                                     echo "<td>{$row['playerid']}</td>";
                                     echo "<td>{$row['firstname']}</td>";
                                     echo "<td>{$row['lastname']}</td>";
-                                    echo "<td>{$row['club1']}</td>";
+                                    echo "<td>{$row['club']}</td>";
                                     echo "</tr>";
                                 }
 
