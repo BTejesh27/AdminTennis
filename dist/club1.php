@@ -27,14 +27,14 @@
                                     <th>Player ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>Club</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 include 'connect.php';
 
-                                $sql = "SELECT * FROM players_d WHERE club='club1'";
+                                $sql = "SELECT * FROM `players_d` WHERE club1='Club1'";
                                 $result = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -43,7 +43,7 @@
                                     echo "<td>{$row['playerid']}</td>";
                                     echo "<td>{$row['firstname']}</td>";
                                     echo "<td>{$row['lastname']}</td>";
-                                    echo "<td>{$row['club']}</td>";
+                                   
                                     echo "</tr>";
                                 }
 

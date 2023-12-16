@@ -5,7 +5,9 @@ include 'nav.php';
 include 'connect.php';
 ?>
 
+
 <main>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">
@@ -27,18 +29,27 @@ include 'connect.php';
                                 <input class="form-control" id="inputfname" type="name" placeholder="last Name" name="lname" required />
                                 <label for="inputlname">Last Name</label>
                             </div>
-                            <div class="form-floating mb-3">
-    <select class="form-select" id="inputclub" name="club" required>
-        <option value="club1">Club 1</option>
-        <option value="club2">Club 2</option>
-        <option value="club3">Club 3</option>
-    </select>
-    <label for="inputclub">Club</label>
-</div>
+                            <div >
+                                
+
+                                <label style="margin-right: 150px";> Clubs:</label><br>
+                                <input type="checkbox" id="club1" name="club1" value="Club1">
+                                <label style='margin: left 100px; '; for="club1">Club1</label><br>
+
+                                <input type="checkbox" id="club2" name="club2" value="Club2">
+                                <label style='margin: left 500px; ';  for="club2">Club2</label><br>
+
+                                <input type="checkbox" id="club3" name="club3" value="Club3">
+                                <label style='margin: left 500px; '; for="club3">Club3</label><br>
 
 
-                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                 <button class="login-form-button" type="submit" name="submit">Submit</button>
+
+
+                            </div>
+
+
                             </div>
                         </form>
                     </div>
@@ -46,33 +57,38 @@ include 'connect.php';
             </div>
         </div>
     </div>
+    </body>
     <?php
-if (isset($_POST['submit'])) {
-    // Sanitize input to prevent SQL injection
-    $playerid = $_POST["id"];
-    $firstname = $_POST["fname"];
-    $lastname = $_POST["lname"];
-    $club = $_POST["club"];
+    if (isset($_POST['submit'])) {
+        // Sanitize input to prevent SQL injection
+        $playerid = $_POST["id"];
+        $firstname = $_POST["fname"];
+        $lastname = $_POST["lname"];
+        $club1 = $_POST["club1"];
+        $club2 = $_POST["club2"];
+        $club3 = $_POST["club3"];
+       
 
-    // Check if the player already exists in the specified club
-    $checkQuery = "SELECT * FROM players_d WHERE playerid = '$playerid' AND club = '$club'";
-    $result = $conn->query($checkQuery);
 
-    if ($result->num_rows > 0) {
-        // Player already exists in the club, show an alert message
-        echo "<script>alert('Player already exists in this club!');</script>";
-    } else {
-        // Player does not exist in the club, proceed with the insertion
-        $insertQuery = "INSERT INTO players_d(playerid, firstname, lastname, club) VALUES ('$playerid', '$firstname', '$lastname', '$club')";
+        // Check if the player already exists in the specified club
+        $checkQuery = "SELECT * FROM players_d WHERE playerid = '$playerid'";
+        $result = $conn->query($checkQuery);
 
-        if ($conn->query($insertQuery) === TRUE) {
-            echo "<script>alert('Success!');</script>";
+        if ($result->num_rows > 0) {
+            // Player already exists in the club, show an alert message
+            echo "<script>alert('Player already exists in this club!');</script>";
         } else {
-            echo "Error: " . $insertQuery . "<br>" . $conn->error;
+            // Player does not exist in the club, proceed with the insertion
+            $insertQuery = "INSERT INTO players_d(playerid, firstname, lastname, club1,club2,club3) VALUES ('$playerid', '$firstname', '$lastname', '$club1','$club2','$club3')";
+
+            if ($conn->query($insertQuery) === TRUE) {
+                echo "<script>alert('Success!');</script>";
+            } else {
+                echo "Error: " . $insertQuery . "<br>" . $conn->error;
+            }
         }
     }
-}
-?>
+    ?>
 
 </main>
 <footer class="py-4 bg-light mt-auto">
@@ -89,4 +105,3 @@ if (isset($_POST['submit'])) {
 </footer>
 </div>
 </div>
-

@@ -11,13 +11,15 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <style>table {
+    <style>
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -25,7 +27,8 @@
 
         th {
             background-color: #f2f2f2;
-        }</style>
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -66,7 +69,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="club.php">Club 1</a>
+                                <a class="nav-link" href="club1.php">Club 1</a>
                                 <a class="nav-link" href="club2.php">Club 2</a>
                                 <a class="nav-link" href="club3.php">Club 3</a>
                             </nav>
@@ -90,7 +93,7 @@
         </div>
 
         <!-- display players list -->
-        
+
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -103,7 +106,10 @@
                                     <th>Player ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>Club</th>
+                                    <th>Club1</th>
+                                    <th>Club2</th>
+                                    <th>Club3</th>
+                                    <th>Operation</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,7 +125,13 @@
                                     echo "<td>{$row['playerid']}</td>";
                                     echo "<td>{$row['firstname']}</td>";
                                     echo "<td>{$row['lastname']}</td>";
-                                    echo "<td>{$row['club']}</td>";
+                                    echo "<td>{$row['club1']}</td>";
+                                    echo "<td>{$row['club2']}</td>";
+                                    echo "<td>{$row['club3']}</td>";
+                                    echo "<td>";
+                                    echo "<a href='edit.php?id={$row['playerid']}' class='btn btn-primary'>Edit</a>";
+                                    echo "<a href='delete.php?id={$row['playerid']}' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this player?\")'>Delete</a>";
+                                    echo "</td>";
                                     echo "</tr>";
                                 }
 
@@ -127,6 +139,7 @@
                                 ?>
                             </tbody>
                         </table>
+
                     </div>
 
 
