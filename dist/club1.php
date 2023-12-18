@@ -34,7 +34,7 @@
                                 <?php
                                 include 'connect.php';
 
-                                $sql = "SELECT * FROM `players_d` WHERE club1='Club1'";
+                                $sql = "SELECT * FROM `players_d` WHERE club='Club1'";
                                 $result = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($result)) {

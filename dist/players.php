@@ -106,9 +106,8 @@
                                     <th>Player ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
-                                    <th>Club1</th>
-                                    <th>Club2</th>
-                                    <th>Club3</th>
+                                    <th>Club</th>
+                                   
                                     <th>Operation</th>
                                 </tr>
                             </thead>
@@ -125,9 +124,8 @@
                                     echo "<td>{$row['playerid']}</td>";
                                     echo "<td>{$row['firstname']}</td>";
                                     echo "<td>{$row['lastname']}</td>";
-                                    echo "<td>{$row['club1']}</td>";
-                                    echo "<td>{$row['club2']}</td>";
-                                    echo "<td>{$row['club3']}</td>";
+                                    echo "<td>{$row['club']}</td>";
+                                    
                                     echo "<td>";
                                     echo "<a href='edit.php?id={$row['playerid']}' class='btn btn-primary'>Edit</a>";
                                     echo "<a href='delete.php?id={$row['playerid']}' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this player?\")'>Delete</a>";

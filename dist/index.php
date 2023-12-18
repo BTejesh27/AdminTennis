@@ -148,9 +148,9 @@ include 'connect.php';
 // Assuming you have a database connection established
 
 // SQL queries
-$s1 = "SELECT count(*) as count FROM players_d WHERE club1='club1'";
-$s2 = "SELECT count(*) as count FROM players_d WHERE club2='club2'";
-$s3 = "SELECT count(*) as count FROM players_d WHERE club3='club3'";
+$s1 = "SELECT count(*) as count FROM players_d WHERE club='club1'";
+$s2 = "SELECT count(*) as count FROM players_d WHERE club='club2'";
+$s3 = "SELECT count(*) as count FROM players_d WHERE club='club3'";
 
 // Execute queries and fetch results
 $result1 = mysqli_query($conn, $s1);
