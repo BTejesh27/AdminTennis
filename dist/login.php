@@ -44,7 +44,7 @@ include 'connect.php';
 
 
                                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                <button class="login-form-button" type="submit" name="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 
 
                             </div>
@@ -59,14 +59,17 @@ include 'connect.php';
     </div>
     </body>
     <?php
+    include 'connect.php';
+
     if (isset($_POST['submit'])) {
         // Sanitize input to prevent SQL injection
         $playerid = $_POST["id"];
         $firstname = $_POST["fname"];
         $lastname = $_POST["lname"];
-        $club1 = $_POST["club1"];
-        $club2 = $_POST["club2"];
-        $club3 = $_POST["club3"];
+        $club1 = isset($_POST["club1"]) ? $_POST["club1"] : 0;
+        $club2 = isset($_POST["club2"]) ? $_POST["club2"] : 0;
+        $club3 = isset($_POST["club3"]) ? $_POST["club3"] : 0;
+        
        
 
 

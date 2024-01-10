@@ -27,6 +27,8 @@
                                     <th>Player ID</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Matches</th>
+                                    <th>score</th>
                                     
                                 </tr>
                             </thead>
@@ -34,7 +36,16 @@
                                 <?php
                                 include 'connect.php';
 
-                                $sql = "SELECT * FROM `players_d` WHERE club1='Club1'";
+                                $sql = "SELECT 
+                                players_d.playerid, 
+                                players_d.firstname, 
+                                players_d.lastname, 
+                                player_score.mat, 
+                                player_score.score
+                            FROM players_d
+                            LEFT JOIN player_score ON players_d.playerid = player_score.playerid
+                            WHERE players_d.club1 = 'Club1'";
+
                                 $result = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -43,6 +54,8 @@
                                     echo "<td>{$row['playerid']}</td>";
                                     echo "<td>{$row['firstname']}</td>";
                                     echo "<td>{$row['lastname']}</td>";
+                                    echo "<td>{$row['mat']}</td>";
+                                    echo "<td>{$row['score']}</td>";
                                    
                                     echo "</tr>";
                                 }

@@ -62,12 +62,12 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Clubs
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="club1.php">Club 1</a>
                                 <a class="nav-link" href="club2.php">Club 2</a>
@@ -75,12 +75,12 @@
                             </nav>
                         </div>
 
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Players
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="login.php">New Member</a>
                                 <a class="nav-link" href="players.php">Player Details</a>
@@ -109,6 +109,8 @@
                                     <th>Club1</th>
                                     <th>Club2</th>
                                     <th>Club3</th>
+                                    <th>matches</th>
+                                    <th>scores</th>
                                     <th>Operation</th>
                                 </tr>
                             </thead>
@@ -116,7 +118,18 @@
                                 <?php
                                 include 'connect.php';
 
-                                $sql = "SELECT * FROM players_d";
+                                $sql = "SELECT 
+                                           players_d.playerid, 
+                                           players_d.firstname, 
+                                           players_d.lastname, 
+                                           players_d.club1, 
+                                           players_d.club2, 
+                                           players_d.club3, 
+                                           player_score.mat, 
+                                           player_score.score
+                                           FROM players_d
+                                           INNER JOIN player_score ON players_d.playerid = player_score.playerid";
+
                                 $result = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -128,9 +141,12 @@
                                     echo "<td>{$row['club1']}</td>";
                                     echo "<td>{$row['club2']}</td>";
                                     echo "<td>{$row['club3']}</td>";
+                                    echo "<td>{$row['mat']}</td>";
+                                    echo "<td>{$row['score']}</td>";
+
                                     echo "<td>";
-                                    echo "<a href='edit.php?id={$row['playerid']}' class='btn btn-primary'>Edit</a>";
-                                    echo "<a href='delete.php?id={$row['playerid']}' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this player?\")'>Delete</a>";
+                                    echo "<a href='edit.php?id={$row['playerid']}' class='btn btn-primary m-2'>Edit</a>";
+                                    echo "<a href='delete.php?id={$row['playerid']}' class='btn btn-danger p=m-2' onclick='return confirm(\"Are you sure you want to delete this player?\")'>Delete</a>";
                                     echo "</td>";
                                     echo "</tr>";
                                 }
