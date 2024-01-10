@@ -36,7 +36,6 @@
                             <tbody>
                             <?php
                                 include 'connect.php';
-
                                 $sql = "SELECT 
                                 players_d.playerid, 
                                 players_d.firstname, 
@@ -46,6 +45,9 @@
                             FROM players_d
                             LEFT JOIN player_score ON players_d.playerid = player_score.playerid
                             WHERE players_d.club3 = 'Club3'";
+
+
+                            
 
                                 $result = mysqli_query($conn, $sql);
 
