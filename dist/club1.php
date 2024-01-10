@@ -36,6 +36,7 @@
                                 <?php
                                 include 'connect.php';
 
+<<<<<<< HEAD
                                 $sql = "SELECT 
                                 players_d.playerid, 
                                 players_d.firstname, 
@@ -46,6 +47,9 @@
                             LEFT JOIN player_score ON players_d.playerid = player_score.playerid
                             WHERE players_d.club1 = 'Club1'";
 
+=======
+                                $sql = "SELECT * FROM `players_d` WHERE club='Club1'";
+>>>>>>> bd206c4bcdcd05ac38d40520b1899c42ad6a88cb
                                 $result = mysqli_query($conn, $sql);
 
                                 while ($row = mysqli_fetch_assoc($result)) {
