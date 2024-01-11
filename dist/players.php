@@ -128,7 +128,7 @@
                                            player_score.mat, 
                                            player_score.score
                                            FROM players_d
-                                           INNER JOIN player_score ON players_d.playerid = player_score.playerid";
+                                           LEFT JOIN player_score ON players_d.playerid = player_score.playerid";
 
                                 $result = mysqli_query($conn, $sql);
 
@@ -142,7 +142,7 @@
                                     echo "<td>{$row['club2']}</td>";
                                     echo "<td>{$row['club3']}</td>";
                                     echo "<td>{$row['mat']}</td>";
-                                    echo "<td>{$row['score']}</td>";
+                                    echo "<td>{$row['score']}</td>";                                  
                                     echo "<td>";
                                     echo "<a href='edit.php?id={$row['playerid']}' class='btn btn-primary m-2'>Edit</a>";
                                     echo "<a href='delete.php?id={$row['playerid']}' class='btn btn-danger p=m-2' onclick='return confirm(\"Are you sure you want to delete this player?\")'>Delete</a>";
