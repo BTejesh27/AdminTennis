@@ -19,35 +19,49 @@ include 'connect.php';
                         <form method="post" action="">
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputname" type="name" placeholder="name@example.com" name="id" required />
-                                <label for="inputEmail">Playerid</label>
+                                <label for="inputEmail">Pid</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputlname" type="name" placeholder="First Name" name="fname" required />
-                                <label for="inputfname">First Name</label>
+                                <input class="form-control" id="inputlname" type="name" placeholder="Name" name="name" required />
+                                <label for="inputfname">Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="last Name" name="lname" required />
-                                <label for="inputlname">Last Name</label>
+                                <input class="form-control" id="inputfname" type="name" placeholder="Age" name="age" required />
+                                <label for="inputlname">Age</label>
                             </div>
-                            <div >
-                                
+                            <div>
 
-                                <label style="margin-right: 150px";> Clubs:</label><br>
-                                <input type="checkbox" id="club1" name="club1" value="Club1">
-                                <label style='margin: left 100px; '; for="club1">Club1</label><br>
+                                <label style="margin-right: 150px" ;> Gender</label><br>
+                                <input type="checkbox" name="male" value="male">
+                                <label style='margin: left 100px; ' ; for="male">Male</label><br>
 
-                                <input type="checkbox" id="club2" name="club2" value="Club2">
-                                <label style='margin: left 500px; ';  for="club2">Club2</label><br>
+                                <input type="checkbox" name="female" value="female">
+                                <label style='margin: left 500px; ' ; for="female">Female</label><br><br>
 
-                                <input type="checkbox" id="club3" name="club3" value="Club3">
-                                <label style='margin: left 500px; '; for="club3">Club3</label><br>
+
+
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="inputfname" type="name" placeholder="Address" name="address" required />
+                                <label for="inputlname">Address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="inputfname" type="name" placeholder="Mobile" name="mobile" required />
+                                <label for="inputlname">Mobile</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="inputfname" type="name" placeholder="Email" name="email" required />
+                                <label for="inputlname">Email</label>
+                            </div>
+                            <div>
 
 
                                 <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
 
 
-                            </div>
+                                </div>
 
 
                             </div>
@@ -63,33 +77,23 @@ include 'connect.php';
 
     if (isset($_POST['submit'])) {
         // Sanitize input to prevent SQL injection
-        $playerid = $_POST["id"];
-        $firstname = $_POST["fname"];
-        $lastname = $_POST["lname"];
-        $club1 = isset($_POST["club1"]) ? $_POST["club1"] : 0;
-        $club2 = isset($_POST["club2"]) ? $_POST["club2"] : 0;
-        $club3 = isset($_POST["club3"]) ? $_POST["club3"] : 0;
-        
-       
+        $pid = $_POST['id'];
+        $name = $_POST['name'];
+        $age = $_POST['age'];
+        $gender = isset($_POST['male']) ? 'Male' : (isset($_POST['female']) ? 'Female' : '');
+        $address = $_POST['address'];
+        $mobile = $_POST['mobile'];
+        $email = $_POST['email'];
 
+        $insertQuery = "INSERT INTO players_d(pid, pname, age, gender, address, mobileno, email) VALUES ('$pid', '$name', '$age', '$gender', '$address', '$mobile', '$email')";
 
-        // Check if the player already exists in the specified club
-        $checkQuery = "SELECT * FROM players_d WHERE playerid = '$playerid'";
-        $result = $conn->query($checkQuery);
-
-        if ($result->num_rows > 0) {
-            // Player already exists in the club, show an alert message
-            echo "<script>alert('Player already exists in this club!');</script>";
+        if ($conn->query($insertQuery) === TRUE) {
+            echo "<script>alert('Success!');</script>";
         } else {
-            // Player does not exist in the club, proceed with the insertion
-            $insertQuery = "INSERT INTO players_d(playerid, firstname, lastname, club1,club2,club3) VALUES ('$playerid', '$firstname', '$lastname', '$club1','$club2','$club3')";
-
-            if ($conn->query($insertQuery) === TRUE) {
-                echo "<script>alert('Success!');</script>";
-            } else {
-                echo "Error: " . $insertQuery . "<br>" . $conn->error;
-            }
+            echo "Error: " . $insertQuery . "<br>" . $conn->error;
         }
+    
+       
     }
     ?>
 
