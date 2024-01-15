@@ -97,7 +97,6 @@
                                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                         Dashboard
                                     </a>
-                                    <!-- <div class="sb-sidenav-menu-heading">Interface</div> -->
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                         Tournaments
@@ -134,6 +133,10 @@
                                             <a class="nav-link" href="players.php">Player Details</a>
                                         </nav>
                                     </div>
+                                    <a class="nav-link" href="category.php">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        Category
+                                    </a>
                         </nav>
                     </div>
                     <div id="layoutSidenav_content">
