@@ -18,7 +18,7 @@ include 'connect.php';
                     <div class="card-body">
                         <form method="post" action="">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputname" type="name" placeholder="name@example.com" name="id" required />
+                                <input class="form-control" id="inputname" type="name" placeholder="pid" name="id" required />
                                 <label for="inputEmail">Pid</label>
                             </div>
                             <div class="form-floating mb-3">
