@@ -1,6 +1,9 @@
 <?php
 include 'nav.php';
 ?>
+<?php
+include 'connect.php';
+?>
 <main>
 
 <div class="container">
