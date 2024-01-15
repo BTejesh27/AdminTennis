@@ -29,7 +29,7 @@ include 'connect.php';
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="categoryid" name="catid" required />
+                                <input class="form-control" id="inputfname" type="name" placeholder="categoryid" name="catid" required/>
                                 <label for="inputlname">Categoryid</label>
                             </div>
                             <div class="form-floating mb-3">
@@ -49,15 +49,15 @@ include 'connect.php';
                                 <label for="inputlname">Playerid 2</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="score" name="score" required />
+                                <input class="form-control" id="inputfname" type="name" placeholder="score" name="score"  />
                                 <label for="inputlname">Score</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="win" name="win" required />
+                                <input class="form-control" id="inputfname" type="name" placeholder="win" name="win"  />
                                 <label for="inputlname">Win</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="timestamp" name="timestamp" required />
+                                <input class="form-control" id="inputfname" type="name" placeholder="timestamp" name="timestamp"  />
                                 <label for="inputlname">Time Stamp</label>
                             </div>
 
