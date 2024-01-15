@@ -65,7 +65,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="login.php">New Member</a>
+                                <a class="nav-link" href="login.php">New Player</a>
                                 <a class="nav-link" href="players.php">Player Details</a>
                             </nav>
                         </div>
