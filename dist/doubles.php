@@ -13,61 +13,61 @@ include 'nav.php';
                     <div class="card-body">
                         <form method="post" action="">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputname" type="name" placeholder="Matchid" name="mid" required />
-                                <label for="inputEmail">Matchid</label>
+                                <input class="form-control" id="inputmatchid" type="name" placeholder="Matchid" name="mid" required />
+                                <label for="inputmatchid">Matchid</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputlname" type="name" placeholder="tournamentid" name="tid" required />
-                                <label for="inputfname">Tournamentid</label>
+                                <input class="form-control" id="inputtournamentid" type="name" placeholder="tournamentid" name="tid" required />
+                                <label for="inputtournamentid">Tournamentid</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="level" name="level" required />
-                                <label for="inputlname">Level</label>
+                                <input class="form-control" id="inputlevel" type="name" placeholder="level" name="level" required />
+                                <label for="inputlevel">Level</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="categoryid" name="catid" required />
-                                <label for="inputlname">Categoryid</label>
+                                <input class="form-control" id="inputcategoryid" type="name" placeholder="categoryid" name="catid" required />
+                                <label for="inputcategoryid">Categoryid</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="Matchdate" name="mdate" required />
-                                <label for="inputlname">Matchdate</label>
+                                <input class="form-control" id="inputmatchdate" type="name" placeholder="Matchdate" name="mdate" required />
+                                <label for="inputmatchdate">Matchdate</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="matchtime" name="mtime" required />
-                                <label for="inputlname">Match time</label>
+                                <input class="form-control" id="inputmatchtime" type="name" placeholder="matchtime" name="mtime" required />
+                                <label for="inputmatchtime">Match time</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="playerid1" name="pid1"  />
-                                <label for="inputlname">Playerid 1</label>
+                                <input class="form-control" id="inputpid1" type="name" placeholder="playerid1" name="pid1"  />
+                                <label for="inputpid1">Playerid 1</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="playerid2" name="pid2"  />
-                                <label for="inputlname">Playerid 2</label>
+                                <input class="form-control" id="inputpid2" type="name" placeholder="playerid2" name="pid2"  />
+                                <label for="inputpid2">Playerid 2</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="playerid3" name="pid3"  />
-                                <label for="inputlname">Playerid 3</label>
+                                <input class="form-control" id="inputpid3" type="name" placeholder="playerid3" name="pid3"  />
+                                <label for="inputpid3">Playerid 3</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="playerid4" name="pid4" />
-                                <label for="inputlname">Playerid 4</label>
+                                <input class="form-control" id="inputpid4" type="name" placeholder="playerid4" name="pid4" />
+                                <label for="inputpid4">Playerid 4</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="score" name="score"  />
-                                <label for="inputlname">Score</label>
+                                <input class="form-control" id="inputscore" type="name" placeholder="score" name="score"  />
+                                <label for="inputscore">Score</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="win1" name="win1"  />
-                                <label for="inputlname">Win1</label>
+                                <input class="form-control" id="inputwin1" type="name" placeholder="win1" name="win1"  />
+                                <label for="inputwin1">Win1</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="win2" name="win2"  />
-                                <label for="inputlname">Win2</label>
+                                <input class="form-control" id="inputwin2" type="name" placeholder="win2" name="win2"  />
+                                <label for="inputwin2">Win2</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="timestamp" name="timestamp"  />
-                                <label for="inputlname">Time Stamp</label>
+                                <input class="form-control" id="inputtimestamp" type="name" placeholder="timestamp" name="timestamp"  />
+                                <label for="inputtimestamp">Time Stamp</label>
                             </div>
 
                             <div>

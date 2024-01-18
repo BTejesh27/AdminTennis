@@ -2,7 +2,7 @@
 
 
 // Create connection
-$conn = mysqli_connect("localhost", "root", "", "tennis");
+$conn = mysqli_connect("localhost", "root", " ", "tennis");
 
 // Check connection
 if (!$conn) {

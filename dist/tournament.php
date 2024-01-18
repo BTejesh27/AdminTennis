@@ -13,29 +13,29 @@ include 'nav.php';
                     <div class="card-body">
                         <form method="post" action="">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputname" type="name" placeholder="tournamentid" name="tid" required />
-                                <label for="inputEmail">Tournament id</label>
+                                <input class="form-control" id="inputtournamentid" type="name" placeholder="tournamentid" name="tid" required />
+                                <label for="inputtournamentid">Tournament id</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputlname" type="name" placeholder="tournamentname" name="tname" required />
-                                <label for="inputfname">Tournament name</label>
+                                <input class="form-control" id="inputtournamentname" type="name" placeholder="tournamentname" name="tname" required />
+                                <label for="inputtournamentname">Tournament name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="year" name="year" required />
-                                <label for="inputlname">Year</label>
+                                <input class="form-control" id="inputyear" type="name" placeholder="year" name="year" required />
+                                <label for="inputyear">Year</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="sdate" name="sdate" required />
-                                <label for="inputlname">Starting Date</label>
+                                <input class="form-control" id="inputsdate" type="name" placeholder="sdate" name="sdate" required />
+                                <label for="inputsdate">Starting Date</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="edate" name="edate" required />
-                                <label for="inputlname">Ending date</label>
+                                <input class="form-control" id="inputedate" type="name" placeholder="edate" name="edate" required />
+                                <label for="inputedate">Ending date</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="hosted" name="host" required />
-                                <label for="inputlname">Hosted By</label>
+                                <input class="form-control" id="inputhost" type="name" placeholder="hosted" name="host" required />
+                                <label for="inputhost">Hosted By</label>
                             </div>
                            
                             <div>

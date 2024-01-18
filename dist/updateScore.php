@@ -45,20 +45,16 @@
 </head>
 <body>
 
- 
+  <!-- Update form -->
+  <form id="updateForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <label for="player1Input">Player 1 Score:</label>
+    <input type="number" id="player1Input" name="player1" min="0">
+    
+    <label for="player2Input">Player 2 Score:</label>
+    <input type="number" id="player2Input" name="player2" min="0">
 
-    <!-- Update form -->
-    <form id="updateForm">
-      <label for="player1Input">Player 1 Score:</label>
-      <input type="number" id="player1Input" name="player1" min="0">
-      
-      <label for="player2Input">Player 2 Score:</label>
-      <input type="number" id="player2Input" name="player2" min="0">
-
-      <button type="button" onclick="updateScores()">Update Scores</button>
-    </form>
-  </div>
-
+    <button type="submit">Update Scores</button>
+  </form>
   <script>
     // Your existing JavaScript code goes here
 
@@ -70,7 +66,7 @@
       // ...
 
       // Assuming you have a function to update the scores on the frontend
-      updateFrontendScores(player1Score, player2Score);
+      updateFrontendScores(player1, player2);
     }
 
     function updateFrontendScores(player1Score, player2Score) {
@@ -89,11 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate and sanitize input if needed
 
-    $sql = "UPDATE scores SET player1 = $player1, player2 = $player2 WHERE id = 1";
+    $sql = "UPDATE scores SET player1 = $player1, player2 = $player2 ";
 
     if ($conn->query($sql) === TRUE) {
         // Redirect back to the main page after updating scores
-        header("Location: 1.php");
+    
         exit();
     } else {
         echo "Error updating record: " . $conn->error;

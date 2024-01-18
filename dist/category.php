@@ -16,12 +16,12 @@ include 'connect.php';
                     <div class="card-body">
                         <form method="post" action="">
                         <div class="form-floating mb-3">
-                                <input class="form-control" id="inputname" type="name" placeholder="catid" name="catid" required />
-                                <label for="inputEmail">Categoryid</label>
+                                <input class="form-control" id="inputcategoryid" type="name" placeholder="catid" name="catid" required />
+                                <label for="inputcategoryid">Categoryid</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputlname" type="name" placeholder="category" name="category" required />
-                                <label for="inputfname">Category</label>
+                                <input class="form-control" id="inputcategory" type="name" placeholder="category" name="category" required />
+                                <label for="inputcategory">Category</label>
                             </div>
 
                            

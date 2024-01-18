@@ -18,16 +18,16 @@ include 'connect.php';
                     <div class="card-body">
                         <form method="post" action="">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputname" type="name" placeholder="pid" name="id" required />
-                                <label for="inputEmail">Pid</label>
+                                <input class="form-control" id="inputplayerid" type="name" placeholder="pid" name="id" required />
+                                <label for="inputplayerid">Player id</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputlname" type="name" placeholder="Name" name="name" required />
-                                <label for="inputfname">Name</label>
+                                <input class="form-control" id="inputname" type="name" placeholder="Name" name="name" required />
+                                <label for="inputname">Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="Age" name="age" required />
-                                <label for="inputlname">Age</label>
+                                <input class="form-control" id="inputage" type="name" placeholder="Age" name="age" required />
+                                <label for="inputage">Age</label>
                             </div>
                             <div>
 
@@ -43,17 +43,33 @@ include 'connect.php';
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="Address" name="address" required />
-                                <label for="inputlname">Address</label>
+                                <input class="form-control" id="inputaddress" type="name" placeholder="Address" name="address" required />
+                                <label for="inputaddress">Address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="Mobile" name="mobile" required />
-                                <label for="inputlname">Mobile</label>
+                                <input class="form-control" id="inputmobile" type="name" placeholder="Mobile" name="mobile" required />
+                                <label for="inputmobile">Mobile</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputfname" type="name" placeholder="Email" name="email" required />
-                                <label for="inputlname">Email</label>
+                                <input class="form-control" id="inputemail" type="name" placeholder="Email" name="email" required />
+                                <label for="inputemail">Email</label>
                             </div>
+                            <div>
+
+                                <label style="margin-right: 150px" ;> Club</label><br>
+                                <input type="checkbox" name="club1" value="club1">
+                                <label style='margin: left 100px; ' ; for="club1">club1</label><br>
+
+                                <input type="checkbox" name="club2" value="club2">
+                                <label style='margin: left 500px; ' ; for="club2">club2</label><br>
+                                <input type="checkbox" name="club3" value="club3">
+                                <label style='margin: left 500px; ' ; for="club3">club3</label><br>
+
+
+
+
+                            </div>
+
                             <div>
 
 
@@ -84,6 +100,9 @@ include 'connect.php';
         $address = $_POST['address'];
         $mobile = $_POST['mobile'];
         $email = $_POST['email'];
+        $cid1 = isset($_POST['club1']) ? 1 : 0;
+        $cid2 = isset($_POST['club2']) ? 1 : 0;
+        $cid3 = isset($_POST['club3']) ? 1 : 0;
 
         $insertQuery = "INSERT INTO players_d(pid, pname, age, gender, address, mobileno, email) VALUES ('$pid', '$name', '$age', '$gender', '$address', '$mobile', '$email')";
 
@@ -92,8 +111,6 @@ include 'connect.php';
         } else {
             echo "Error: " . $insertQuery . "<br>" . $conn->error;
         }
-    
-       
     }
     ?>
 
