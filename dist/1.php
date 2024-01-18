@@ -1,82 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <style>
-        /* Style for the login form */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+<?php
+include 'nav.php';
+?>
+<main>
 
-        .container {
-            width: 300px;
-            margin: 100px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 8px;
-        }
-
-        input {
-            padding: 8px;
-            margin-bottom: 16px;
-        }
-
-        button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Additional styling for responsiveness */
-        @media (max-width: 400px) {
-            .container {
-                width: 80%;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>live score</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Login</h2>
-        <form action="process_login.php" method="post">
-            <label for="playerid">Player ID:</label>
-            <input type="text" id="playerid" name="playerid" required>
 
-            <label for="matchesplayed">Matches Played:</label>
-            <input type="text" id="matchesplayed" name="matchesplayed" required>
+            #layoutSidenav_content {
+                margin: 20px;
+            }
 
-            <label for="totalscore">Total Score:</label>
-            <input type="text" id="totalscore" name="totalscore" required>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
 
-            <button type="submit" name="login">Login</button>
-        </form>
+            th,
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .btn {
+                text-decoration: none;
+                padding: 8px 12px;
+                margin: 2px;
+                border-radius: 4px;
+                display: inline-block;
+            }
+
+            .btn-primary {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            .btn-danger {
+                background-color: #dc3545;
+                color: #fff;
+            }
+        </style>
+    </head>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="container">
+                    <h2>live score</h2>
+                    <table>
+                        <thead>
+                            <tr>
+
+                                <th>Player 1</th>
+                                <th>Player 2</th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include 'config.php';
+
+                            $sql = "SELECT * FROM scores";
+
+                            $result = mysqli_query($conn, $sql);
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>{$row['player1']}</td>";
+                                echo "<td>{$row['player2']}</td>";
+                           
+                            }
+
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-</body>
-</html>
+    </div>
