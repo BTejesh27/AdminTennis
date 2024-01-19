@@ -26,6 +26,10 @@ include 'connect.php';
                                 <label for="inputname">Name</label>
                             </div>
                             <div class="form-floating mb-3">
+                                <input class="form-control" id="inputname" type="name" placeholder="Name" name="pnickname" required />
+                                <label for="inputname">NickName</label>
+                            </div>
+                            <div class="form-floating mb-3">
                                 <input class="form-control" id="inputage" type="name" placeholder="Age" name="age" required />
                                 <label for="inputage">Age</label>
                             </div>
@@ -91,6 +95,7 @@ include 'connect.php';
         // Sanitize input to prevent SQL injection
         $pid = $_POST['id'];
         $name = $_POST['name'];
+        $pnickname = $_POST['pnickname'];
         $age = $_POST['age'];
         $gender = isset($_POST['male']) ? 'Male' : (isset($_POST['female']) ? 'Female' : '');
         $address = $_POST['address'];
@@ -100,8 +105,8 @@ include 'connect.php';
         $cid2 = isset($_POST['club2']) ? 2 : 0;
         $cid3 = isset($_POST['club3']) ? 3 : 0;
 
-        $insertQuery = "INSERT INTO players_d(pid, pname, age, gender, address, mobileno, email, cid1, cid2, cid3) 
-                        VALUES ('$pid', '$name', '$age', '$gender', '$address', '$mobile', '$email', '$cid1', '$cid2', '$cid3')";
+        $insertQuery = "INSERT INTO players_d(pid, pname,pnickname, age, gender, address, mobileno, email, cid1, cid2, cid3) 
+                        VALUES ('$pid', '$name','$pnickname', '$age', '$gender', '$address', '$mobile', '$email', '$cid1', '$cid2', '$cid3')";
 
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Success!');</script>";
