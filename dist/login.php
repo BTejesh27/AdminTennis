@@ -97,8 +97,8 @@ include 'connect.php';
         $mobile = $_POST['mobile'];
         $email = $_POST['email'];
         $cid1 = isset($_POST['club1']) ? 1 : 0;
-        $cid2 = isset($_POST['club2']) ? 1 : 0;
-        $cid3 = isset($_POST['club3']) ? 1 : 0;
+        $cid2 = isset($_POST['club2']) ? 2 : 0;
+        $cid3 = isset($_POST['club3']) ? 3 : 0;
 
         $insertQuery = "INSERT INTO players_d(pid, pname, age, gender, address, mobileno, email, cid1, cid2, cid3) 
                         VALUES ('$pid', '$name', '$age', '$gender', '$address', '$mobile', '$email', '$cid1', '$cid2', '$cid3')";

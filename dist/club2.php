@@ -1,15 +1,15 @@
 <?php
-include 'nav.php';
+    include 'nav.php';
 ?>
-<main> <style>
+<main>
+    <style>
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
-        th,
-        td {
+        th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -25,41 +25,41 @@ include 'nav.php';
             <table>
                 <thead>
                     <tr>
-                        <th>profile</th>
+                       
                         <th>Player ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Player Name</th>
+                        <th>Nick Name</th>
+                        <th>Age</th>
                         <th>Matches</th>
-                        <th>score</th>
-
+                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     include 'connect.php';
 
-
                     $sql = "SELECT 
-                                players_d.playerid, 
-                                players_d.firstname, 
-                                players_d.lastname, 
+                                players_d.pid, 
+                                players_d.pname, 
+                                players_d.pnickname,
+                                players_d.age, 
                                 player_score.mat, 
-                                player_score.score
+                                player_score.points
                             FROM players_d
-                            LEFT JOIN player_score ON players_d.playerid = player_score.playerid
-                            WHERE players_d.club2 = 'Club2'";
-
-
+                            LEFT JOIN player_score ON players_d.pid = player_score.pid
+                            WHERE players_d.cid2 = 2 ";
 
                     $result = mysqli_query($conn, $sql);
+
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>{$row['playerid']}</td>";
-                        echo "<td>{$row['playerid']}</td>";
-                        echo "<td>{$row['firstname']}</td>";
-                        echo "<td>{$row['lastname']}</td>";
+                      
+                        echo "<td>{$row['pid']}</td>";
+                        echo "<td>{$row['pname']}</td>";
+                        echo "<td>{$row['pnickname']}</td>";
+                        echo "<td>{$row['age']}</td>";
                         echo "<td>{$row['mat']}</td>";
-                        echo "<td>{$row['score']}</td>";
+                        echo "<td>{$row['points']}</td>";
                         echo "</tr>";
                     }
 
@@ -68,8 +68,6 @@ include 'nav.php';
                 </tbody>
             </table>
         </div>
-
-
     </div>
 </main>
 <footer class="py-4 bg-light mt-auto">
@@ -84,5 +82,6 @@ include 'nav.php';
         </div>
     </div>
 </footer>
+</div>
 </div>
 </div>
