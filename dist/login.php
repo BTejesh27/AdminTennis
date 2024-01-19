@@ -39,7 +39,6 @@ include 'connect.php';
                                 <label style='margin: left 500px; ' ; for="female">Female</label><br><br>
 
 
-
                             </div>
 
                             <div class="form-floating mb-3">
