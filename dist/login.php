@@ -66,8 +66,6 @@ include 'connect.php';
                                 <label style='margin: left 500px; ' ; for="club3">club3</label><br>
 
 
-
-
                             </div>
 
                             <div>
