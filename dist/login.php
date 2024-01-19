@@ -100,7 +100,8 @@ include 'connect.php';
         $cid2 = isset($_POST['club2']) ? 1 : 0;
         $cid3 = isset($_POST['club3']) ? 1 : 0;
 
-        $insertQuery = "INSERT INTO players_d(pid, pname, age, gender, address, mobileno, email) VALUES ('$pid', '$name', '$age', '$gender', '$address', '$mobile', '$email')";
+        $insertQuery = "INSERT INTO players_d(pid, pname, age, gender, address, mobileno, email, cid1, cid2, cid3) 
+                        VALUES ('$pid', '$name', '$age', '$gender', '$address', '$mobile', '$email', '$cid1', '$cid2', '$cid3')";
 
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Success!');</script>";
@@ -108,7 +109,8 @@ include 'connect.php';
             echo "Error: " . $insertQuery . "<br>" . $conn->error;
         }
     }
-    ?>
+?>
+
 
 </main>
 <footer class="py-4 bg-light mt-auto">

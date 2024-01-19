@@ -38,21 +38,14 @@ include 'nav.php';
                                 <label for="inputmatchtime">Match time</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputpid1" type="name" placeholder="playerid1" name="pid1"  />
-                                <label for="inputpid1">Playerid 1</label>
+                                <input class="form-control" id="inputteamid1" type="name" placeholder="teamid1" name="teamid1"  />
+                                <label for="inputpid1">Teamid 1</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputpid2" type="name" placeholder="playerid2" name="pid2"  />
-                                <label for="inputpid2">Playerid 2</label>
+                                <input class="form-control" id="inputteamid2" type="name" placeholder="teamid2" name="teamid2"  />
+                                <label for="inputpid1">Teamid 2</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputpid3" type="name" placeholder="playerid3" name="pid3"  />
-                                <label for="inputpid3">Playerid 3</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputpid4" type="name" placeholder="playerid4" name="pid4" />
-                                <label for="inputpid4">Playerid 4</label>
-                            </div>
+                       
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputscore" type="name" placeholder="score" name="score"  />
                                 <label for="inputscore">Score</label>
@@ -99,16 +92,14 @@ include 'nav.php';
         $catid = $_POST['catid'];
         $mdate = $_POST['mdate'];
         $mtime = $_POST['mtime'];
-        $pid1 = $_POST['pid1'];
-        $pid2 = $_POST['pid2'];
-        $pid3 = $_POST['pid3'];
-        $pid4 = $_POST['pid4'];
+        $teamid1 = $_POST['teamid1'];
+        $teamid2 = $_POST['teamid2'];
         $score = $_POST['score'];
         $win1= $_POST['win1'];
         $win2 = $_POST['win2'];
         $timestamp = $_POST['timestamp'];
 
-        $insertQuery = "INSERT INTO doubles(mid,tid,level,catid,mdate,mtime,pid1,pid2,pid3,pid4,score,win1,win2,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$pid1', '$pid2', '$pid3', '$pid4',  '$score', '$win1','$win2', '$timestamp')";
+        $insertQuery = "INSERT INTO doubles(mid,tid,level,catid,mdate,mtime,teamid1,teamid2,score,win1,win2,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$teamid1', '$teamid2',  '$score', '$win1','$win2', '$timestamp')";
 
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Success!');</script>";
