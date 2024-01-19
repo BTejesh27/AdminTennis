@@ -42,6 +42,7 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="tournament.php">Tournament</a>
                                 <a class="nav-link" href="singles.php">Singles</a>
+                                <a class="nav-link" href="teams.php">Doubles team</a>
                                 <a class="nav-link" href="doubles.php">Doubles</a>
                             </nav>
                         </div>
