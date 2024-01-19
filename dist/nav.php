@@ -75,6 +75,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Category
                         </a>
+                        <a class="nav-link" href="player_points.php">
+                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        Players points
+                         </a>
 
 
             </nav>
