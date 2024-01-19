@@ -59,7 +59,6 @@ include 'connect.php';
                                 <label style="margin-right: 150px" ;> Club</label><br>
                                 <input type="checkbox" name="club1" value="club1">
                                 <label style='margin: left 100px; ' ; for="club1">club1</label><br>
-
                                 <input type="checkbox" name="club2" value="club2">
                                 <label style='margin: left 500px; ' ; for="club2">club2</label><br>
                                 <input type="checkbox" name="club3" value="club3">
