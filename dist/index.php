@@ -94,11 +94,11 @@
                                 <div class="nav">
                                     <!-- <div class="sb-sidenav-menu-heading">Core</div> -->
                                     <a class="nav-link" href="index.php">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
                                         Dashboard
                                     </a>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> -->
                                         Tournaments
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -112,20 +112,20 @@
                                     </div>
 
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> -->
                                         Clubs
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="club1.php">Club 1</a>
-                                            <a class="nav-link" href="club2.php">Club 2</a>
-                                            <a class="nav-link" href="club3.php">Club 3</a>
+                                            <a class="nav-link" href="club1.php">Cosmo Club</a>
+                                            <a class="nav-link" href="club2.php">Youth Club</a>
+                                            <a class="nav-link" href="club3.php">Town hall Club</a>
                                         </nav>
                                     </div>
 
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts3" aria-expanded="false" aria-controls="collapseLayouts">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> -->
                                         Players
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
@@ -136,11 +136,11 @@
                                         </nav>
                                     </div>
                                     <a class="nav-link" href="category.php">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
                                         Category
                                     </a>
                                     <a class="nav-link" href="player_points.php">
-                                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                        <!-- <div class="#"><i class="fas fa-tachometer-al"></i></div> -->
                                         Players points
                                     </a>
                         </nav>
