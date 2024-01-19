@@ -38,11 +38,11 @@ include 'nav.php';
                                 <label for="inputmatchtime">Match time</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputteamid1" type="name" placeholder="teamid1" name="teamid1"  />
+                                <input class="form-control" id="inputteamid1" type="name" placeholder="teamid1" name="teamid1" required />
                                 <label for="inputpid1">Teamid 1</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputteamid2" type="name" placeholder="teamid2" name="teamid2"  />
+                                <input class="form-control" id="inputteamid2" type="name" placeholder="teamid2" name="teamid2" required />
                                 <label for="inputpid1">Teamid 2</label>
                             </div>
                        
