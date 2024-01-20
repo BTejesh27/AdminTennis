@@ -86,19 +86,20 @@ include 'nav.php';
                             <?php
                             include 'connect.php';
 
-                            $sql = "SELECT 
-                            players_d.pid, 
-                            players_d.pname, 
-                            players_d.pnickname,
-                            players_d.age, 
-                            players_d.gender, 
-                            players_d.address, 
-                            players_d.mobileno, 
-                            players_d.email, 
-                            player_score.mat, 
-                            player_score.points
-                        FROM players_d
-                        LEFT JOIN player_score ON players_d.pid = player_score.pid";
+                        //     $sql = "SELECT 
+                        //     players_d.pid, 
+                        //     players_d.pname, 
+                        //     players_d.pnickname,
+                        //     players_d.age, 
+                        //     players_d.gender, 
+                        //     players_d.address, 
+                        //     players_d.mobileno, 
+                        //     players_d.email, 
+                        //     player_score.mat, 
+                        //     player_score.points
+                        // FROM players_d
+                        // LEFT JOIN player_score ON players_d.pid = player_score.pid";
+                           $sql="SELECT *  FROM players_d";
 
                             $result = mysqli_query($conn, $sql);
 
@@ -112,8 +113,8 @@ include 'nav.php';
                                 echo "<td>{$row['address']}</td>";
                                 echo "<td>{$row['mobileno']}</td>";
                                 echo "<td>{$row['email']}</td>";
-                                echo "<td>{$row['mat']}</td>";
-                                echo "<td>{$row['points']}</td>";
+                                // echo "<td>{$row['mat']}</td>";
+                                // echo "<td>{$row['points']}</td>";
                                 echo "</td>";
                                 // echo "<a href='edit.php?id={$row['pid']}' class='btn btn-primary m-2'>Edit</a>";
                                 // echo "<a href='delete.php?id={$row['pid']}' class='btn btn-danger p=m-2' onclick='return confirm(\"Are you sure you want to delete this player?\")'>Delete</a>";
