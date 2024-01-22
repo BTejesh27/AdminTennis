@@ -1,8 +1,7 @@
 <?php
 
-
 // Create connection
-$conn = mysqli_connect("localhost", "root", " ", "tennis");
+$conn = mysqli_connect("localhost", "root", "", "bhimavaramtennis");
 
 // Check connection
 if (!$conn) {
