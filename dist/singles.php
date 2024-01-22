@@ -49,8 +49,12 @@ include 'connect.php';
                                 <label for="inputpid2">Playerid 2</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputscore" type="name" placeholder="score" name="score"  />
-                                <label for="inputscore">Score</label>
+                                <input class="form-control" id="inputscore1" type="name" placeholder="score1" name="score1"  />
+                                <label for="inputscore">Score1</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="inputscore2" type="name" placeholder="score2" name="score2"  />
+                                <label for="inputscore">Score2</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputwin" type="name" placeholder="win" name="win"  />
@@ -92,11 +96,12 @@ include 'connect.php';
         $mtime = $_POST['mtime'];
         $pid1 = $_POST['pid1'];
         $pid2 = $_POST['pid2'];
-        $score = $_POST['score'];
+        $score1 = $_POST['score1'];
+        $score2 = $_POST['score2'];
         $win = $_POST['win'];
         $timestamp = $_POST['timestamp'];
 
-        $insertQuery = "INSERT INTO singles(mid,tid,level,catid,mdate,mtime,pid1,pid2,score,win,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$pid1', '$pid2', '$score', '$win', '$timestamp')";
+        $insertQuery = "INSERT INTO singles(mid,tid,level,catid,mdate,mtime,pid1,pid2,score1,score2,win,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$pid1', '$pid2', '$score1', '$score2','$win', '$timestamp')";
 
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Success!');</script>";
