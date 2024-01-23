@@ -61,34 +61,61 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        $(document).ready(function() {
-            function updateScores() {
-                $.ajax({
-                    url: 'updateScore.php',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(response) {
-                        // Update the table with the latest scores
-                        var tableBody = $('#scoreTable tbody');
-                        tableBody.empty();
+    $(document).ready(function() {
+        function updateScores() {
+            $.ajax({
+                url: 'updateScore.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Update the table with the latest scores
+                    var tableBody = $('#scoreTable tbody');
+                    tableBody.empty();
 
-                        $.each(response, function(index, row) {
-                            tableBody.append('<tr><td>' + row.player1 + '</td><td>' + row.player2 + '</td></tr>');
-                        });
-                    },
-                    error: function(error) {
-                        console.error('Error fetching live scores:', error);
-                    }
-                });
-            }
+                    $.each(response, function(index, row) {
+                        tableBody.append('<tr><td>' + row.player1 + '</td><td>' + row.player2 + '</td></tr>');
+                    });
+                },
+                error: function(error) {
+                    console.error('Error fetching live scores:', error);
+                }
+            });
+        }
 
-            // Initial load of scores
-            updateScores();
+        // Initial load of scores
+        updateScores();
 
-            // Update scores every 10 seconds (adjust as needed)
-            setInterval(updateScores, 2000);
-        });
-    </script>
+        // Update scores every 10 seconds (adjust as needed)
+        setInterval(updateScores, 10000); // 10 seconds
+
+        // Reload the page every 3 seconds
+        setInterval(function() {
+            location.reload();
+        }, 10000); // 3 second
+    });
+
+    $(document).ready(function() {
+        var eventSource = new EventSource('sse.php');
+
+        eventSource.onmessage = function(event) {
+            // Parse and update the table with the latest scores
+            var tableBody = $('#scoreTable tbody');
+            tableBody.empty();
+
+            var scores = JSON.parse(event.data);
+
+            $.each(scores, function(index, row) {
+                tableBody.append('<tr><td>' + row.player1 + '</td><td>' + row.player2 + '</td></tr>');
+            });
+        };
+
+        eventSource.onerror = function(event) {
+            console.error('Error with SSE:', event);
+            eventSource.close();
+        };
+    });
+</script>
+
 </head>
 
 <body>
@@ -117,13 +144,12 @@
                                 echo "<tr>";
                                 echo "<td>{$row['player1']}</td>";
                                 echo "<td>{$row['player2']}</td>";
+                                echo "</tr>";
                             }
 
                             mysqli_close($conn);
                             ?>
-                            <!-- Scores will be dynamically updated here -->
                         </tbody>
-
                     </table>
                 </div>
             </div>
