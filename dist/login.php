@@ -26,11 +26,11 @@ include 'connect.php';
                                 <label for="inputname">Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputname" type="name" placeholder="Name" name="pnickname" required />
+                                <input class="form-control" id="inputname" type="name" placeholder="Name" name="pnickname"  />
                                 <label for="inputname">NickName</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputage" type="name" placeholder="Age" name="age" required />
+                                <input class="form-control" id="inputage" type="name" placeholder="Age" name="age"  />
                                 <label for="inputage">Age</label>
                             </div>
                             <div>
@@ -46,15 +46,15 @@ include 'connect.php';
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputaddress" type="name" placeholder="Address" name="address" required />
+                                <input class="form-control" id="inputaddress" type="name" placeholder="Address" name="address"  />
                                 <label for="inputaddress">Address</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputmobile" type="name" placeholder="Mobile" name="mobile" required />
+                                <input class="form-control" id="inputmobile" type="name" placeholder="Mobile" name="mobile"  />
                                 <label for="inputmobile">Mobile</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputemail" type="name" placeholder="Email" name="email" required />
+                                <input class="form-control" id="inputemail" type="name" placeholder="Email" name="email"  />
                                 <label for="inputemail">Email</label>
                             </div>
                             <div>

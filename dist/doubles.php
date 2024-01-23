@@ -47,17 +47,18 @@ include 'nav.php';
                             </div>
                        
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputscore" type="name" placeholder="score" name="score"  />
-                                <label for="inputscore">Score</label>
+                                <input class="form-control" id="inputscore" type="name" placeholder="score" name="score1"  />
+                                <label for="inputscore">Score1</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="inputscore" type="name" placeholder="score" name="score2"  />
+                                <label for="inputscore">Score2</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputwin1" type="name" placeholder="win1" name="win1"  />
-                                <label for="inputwin1">Win1</label>
+                                <label for="inputwin1">Win team id</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputwin2" type="name" placeholder="win2" name="win2"  />
-                                <label for="inputwin2">Win2</label>
-                            </div>
+                         
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="inputtimestamp" type="name" placeholder="timestamp" name="timestamp"  />
                                 <label for="inputtimestamp">Time Stamp</label>
@@ -94,12 +95,12 @@ include 'nav.php';
         $mtime = $_POST['mtime'];
         $teamid1 = $_POST['teamid1'];
         $teamid2 = $_POST['teamid2'];
-        $score = $_POST['score'];
-        $win1= $_POST['win1'];
-        $win2 = $_POST['win2'];
+        $score1 = $_POST['score1'];
+        $score2 = $_POST['score2'];
+        $win= $_POST['win'];
         $timestamp = $_POST['timestamp'];
 
-        $insertQuery = "INSERT INTO doubles(mid,tid,level,catid,mdate,mtime,teamid1,teamid2,score,win1,win2,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$teamid1', '$teamid2',  '$score', '$win1','$win2', '$timestamp')";
+        $insertQuery = "INSERT INTO doubles(mid,tid,level,catid,mdate,mtime,teamid1,teamid2,score1,score2,win,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$teamid1', '$teamid2',  '$score1', '$score2','$win', '$timestamp')";
 
         if ($conn->query($insertQuery) === TRUE) {
             echo "<script>alert('Success!');</script>";
