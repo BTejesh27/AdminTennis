@@ -14,7 +14,7 @@ if (isset($_POST['update'])) {
     $win = $_POST['win'];
    
 
-    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, score1 = ?, score2 = ?, win = ?,  WHERE mid = ?";
+    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, score1 = ?, score2 = ?, win = ?, timestamp = ? WHERE mid = ?";
 
     $stmt = mysqli_prepare($conn, $updateQuery);
     
@@ -22,12 +22,12 @@ if (isset($_POST['update'])) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "ssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win,  $mid);
+        mysqli_stmt_bind_param($stmt, "sssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win, $timestamp, $mid);
     
         if (mysqli_stmt_execute($stmt)) {
             // Success response
-           echo('successful');
-        } else {
+           echo "<script>alert('Success!');</script>";
+         } else {
             // Error response
             echo json_encode(array('status' => 'error', 'message' => 'Error updating data: ' . mysqli_stmt_error($stmt)));
         }
