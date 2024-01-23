@@ -139,6 +139,14 @@
                                         <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
                                         Category
                                     </a>
+                                    <a class="nav-link" href="singles_r.php">
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
+                                        Update Singles
+                                    </a>
+                                    <a class="nav-link" href="doublrs_r.php">
+                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
+                                        Update doubles
+                                    </a>
                                     <!-- <a class="nav-link" href="player_points.php">
                                         <div class="#"><i class="fas fa-tachometer-al"></i></div> -->
                                         <!-- Players points -->
