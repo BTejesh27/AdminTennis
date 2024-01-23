@@ -30,23 +30,14 @@
                         <th>Player Name</th>
                         <th>Nick Name</th>
                         <th>Age</th>
-                        <th>Matches</th>
-                        <th>Score</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     include 'connect.php';
 
-                    $sql = "SELECT 
-                                players_d.pid, 
-                                players_d.pname, 
-                                players_d.pnickname,
-                                players_d.age, 
-                                player_score.mat, 
-                                player_score.points
+                    $sql = "SELECT *
                             FROM players_d
-                            LEFT JOIN player_score ON players_d.pid = player_score.pid
                             WHERE players_d.cid1 = 1 ";
 
                     $result = mysqli_query($conn, $sql);
@@ -58,8 +49,8 @@
                         echo "<td>{$row['pname']}</td>";
                         echo "<td>{$row['pnickname']}</td>";
                         echo "<td>{$row['age']}</td>";
-                        echo "<td>{$row['mat']}</td>";
-                        echo "<td>{$row['points']}</td>";
+                        // echo "<td>{$row['mat']}</td>";
+                        // echo "<td>{$row['points']}</td>";
                         echo "</tr>";
                     }
 
