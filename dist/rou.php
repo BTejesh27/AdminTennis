@@ -1,39 +1,43 @@
 <?php
-// Include your database connection code here
-include "connect.php";
+include 'nav.php';
+include 'connect.php';
 
-if (isset($_POST['submit'])) {
-    $id = $_POST['ID'];
-    $date = $_POST['date'];
-    $des = $_POST['description'];
-    $link = $_POST['link'];
+// Update data
+if (isset($_POST['update'])) {
+    $mid = $_POST['mid'];
+    $tid = $_POST['tid'];
+   
+    $teamid1 = $_POST['teamid1'];
+    $teamid2 = $_POST['teamid2'];
+    $score1 = $_POST['score1'];
+    $score2 = $_POST['score2'];
+    $win = $_POST['win'];
+   
 
-    // Update the news item in the "flash_news" database using prepared statements
-    $updateQuery = "UPDATE flash_news SET  date = ?, link = ?, description = ? WHERE ID = ?";
-    
+    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, score1 = ?, score2 = ?, win = ?, timestamp = ? WHERE mid = ?";
+
     $stmt = mysqli_prepare($conn, $updateQuery);
     
     if ($stmt === false) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "sssi", $date, $link, $des, $id);
-
+        mysqli_stmt_bind_param($stmt, "sssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win, $timestamp, $mid);
+    
         if (mysqli_stmt_execute($stmt)) {
             // Success response
-            echo json_encode(array('News item updated successfully.'));
-        } else {
+           echo "<script>alert('Success!');</script>";
+         } else {
             // Error response
-            echo json_encode(array('status' => 'error', 'message' => 'Error updating news item: ' . mysqli_stmt_error($stmt)));
+            echo json_encode(array('status' => 'error', 'message' => 'Error updating data: ' . mysqli_stmt_error($stmt)));
         }
-
+    
         mysqli_stmt_close($stmt);
     }
+    
 }
 ?>
 
-
-   
 
 <!DOCTYPE html>
 <html>
@@ -91,19 +95,35 @@ if (isset($_POST['submit'])) {
 include "connect.php";
 
 // Initialize variables to store existing data
-$id = "";
-$date = "";
-$des = "";
-$link = "";
+$mid = "";
+$tid = "";
+$level ="";
+$catid ="";
+$mdate = "";
+$mtime ="";
+$teamid1 = "";
+$teamid2 ="";
+$score1 = "";
+$score2 = "";
+$win = "";
+$timestamp ="";
 
 if (isset($_POST['submit'])) {
-    $id = $_POST['ID'];
-    $date = $_POST['date'];
-    $des = $_POST['description'];
-    $link = $_POST['link'];
+    $mid = $_POST['mid'];
+    $tid =  $_POST['tid'];
+    $level = $_POST['level'];
+    $catid =  $_POST['catid'];
+    $mdate =  $_POST['mdate'];
+    $mtime = $_POST['mtime'];
+    $teamid1 =  $_POST['teamid1'];
+    $teamid2 =  $_POST['teamid2'];
+    $score1 = $_POST['score1'];
+    $score2 =  $_POST['score2'];
+    $win =  $_POST['win'];
+   
 
-    // Update the news item in the "flash_news" database using prepared statements
-    $updateQuery = "UPDATE flash_news SET date = ?, link = ?, description = ? WHERE ID = ?";
+    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, score1 = ?, score2 = ?, win = ?, WHERE mid = ?";
+
     
     $stmt = mysqli_prepare($conn, $updateQuery);
     
@@ -111,23 +131,23 @@ if (isset($_POST['submit'])) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "sssi", $date, $link, $des, $id);
+        mysqli_stmt_bind_param($stmt, "ssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win,  $mid);
 
         if (mysqli_stmt_execute($stmt)) {
             // Success response
-            echo json_encode(array('News item updated successfully.'));
+            echo json_encode(array('Match data updated successfully.'));
         } else {
             // Error response
-            echo json_encode(array('status' => 'error', 'message' => 'Error updating news item: ' . mysqli_stmt_error($stmt)));
+            echo json_encode(array('status' => 'error', 'message' => 'Error updating match data: ' . mysqli_stmt_error($stmt)));
         }
 
         mysqli_stmt_close($stmt);
     }
 } else {
     // Retrieve existing data from the database
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $selectQuery = "SELECT * FROM flash_news WHERE ID = ?";
+    if (isset($_GET['mid'])) {
+        $id = $_GET['mid'];
+        $selectQuery = "SELECT * FROM doubles WHERE mid = ?";
         $stmt = mysqli_prepare($conn, $selectQuery);
         
         if ($stmt) {
@@ -137,10 +157,15 @@ if (isset($_POST['submit'])) {
             $row = mysqli_fetch_assoc($result);
             
             // Populate variables with existing data
-            $date = $row['date'];
-            $des = $row['description'];
-            $link = $row['link'];
-            
+            $mid = $row['mid'];
+            $tid = $row['tid'];
+          
+            $teamid1 = $row['teamid1'];
+            $teamid2 = $row['teamid2'];
+            $score1 = $row['score1'];
+            $score2 = $row['score2'];
+            $win = $row['win'];
+           
             mysqli_stmt_close($stmt);
         } else {
             echo "Error selecting data: " . mysqli_error($conn);
@@ -148,11 +173,16 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+
+
+
+<!-- Your HTML form -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    
-    <title>Update News Item</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Match Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -176,8 +206,7 @@ if (isset($_POST['submit'])) {
             font-weight: bold;
         }
         input[type="text"],
-        input[type="date"],
-        textarea {
+        input[type="date"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -185,6 +214,11 @@ if (isset($_POST['submit'])) {
             border-radius: 3px;
         }
         textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
             height: 100px;
         }
         input[type="submit"] {
@@ -193,80 +227,97 @@ if (isset($_POST['submit'])) {
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            display: inline-block;
         }
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .form-floating {
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
-    <h1>Update News Item</h1>
-    <form method="POST" >
-        <input type="hidden" name="ID" value="<?php echo $id; ?>">
-        <label for="date">Date:</label>
-        <input type="date" name="date" id="date" required value="<?php echo $date; ?>"><br><br>
+    <h1>Update Match Data</h1>
+    <form method="post">
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputmatchidToUpdate" type="text" placeholder="Matchid to Update" name="mid" value="<?php echo $mid; ?>" />
+            <label for="inputmatchidToUpdate">Match id </label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputtournamentid" type="text" placeholder="tournamentid" name="tid" value="<?php echo $tid; ?>" required />
+            <label for="inputtournamentid">Tournamentid</label>
+        </div>
+       
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputpid1" type="name" placeholder="teamid1" name="teamid1" value="<?php echo $teamid1; ?>" required />
+            <label for="inputpid1">Teamid 1</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputpid2" type="name" placeholder="teamid1" name="teamid2" value="<?php echo $teamid2; ?>" required />
+            <label for="inputpid2">Teamid 2</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputscore1" type="name" placeholder="score1" name="score1" value="<?php echo $score1; ?>" />
+            <label for="inputscore">Score1</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputscore2" type="name" placeholder="score2" name="score2" value="<?php echo $score2; ?>" />
+            <label for="inputscore">Score2</label>
+        </div>
+       
 
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" required><?php echo $des; ?></textarea><br><br>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="inputwin" type="name" placeholder="win" name="win" value="<?php echo $win; ?>" />
+                                <label for="inputwin">Win</label>
+                            </div>
+                          
 
-        <label for="link">Link:</label>
-        <input type="text" name="link" id="link" required value="<?php echo $link; ?>"><br><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
-</body>
-</html>
+                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <button class="btn btn-primary" type="submit" name="update">Update Data</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Player Data</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
 
-            #layoutSidenav_content {
-                margin: 20px;
-            }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-            }
+<h2>Player Data</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>mid</th>
+                                <th>pid1</th>
+                                <th>pid2</th>
+                                <th>score1</th>
+                                <th>score2</th>
+                                <th>win</th>
+                                <th>Update</th> <!-- New column for the Update button -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include 'connect.php';
 
-            th,
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
+                            $sql = "SELECT * FROM singles";
+                            $result = mysqli_query($conn, $sql);
 
-            th {
-                background-color: #f2f2f2;
-            }
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>{$row['mid']}</td>";
+                                echo "<td>{$row['pid1']}</td>";
+                                echo "<td>{$row['pid2']}</td>";
+                                echo "<td>{$row['score1']}</td>";
+                                echo "<td>{$row['score2']}</td>";
+                                echo "<td>{$row['win']}</td>";
+                                // Add the Update button with a link to the update_singles.php page
+                                echo "<td><a href='update_singles.php?mid={$row['mid']}' class='btn btn-primary m-2'>Update</a></td>";
+                                echo "</tr>";
+                            }
 
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            .btn {
-                text-decoration: none;
-                padding: 8px 12px;
-                margin: 2px;
-                border-radius: 4px;
-                display: inline-block;
-            }
-
-            .btn-primary {
-                background-color: #007bff;
-                color: #fff;
-            }
-
-            .btn-danger {
-                background-color: #dc3545;
-                color: #fff;
-            }
-        </style>
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>

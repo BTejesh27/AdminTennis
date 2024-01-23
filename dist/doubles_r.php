@@ -2,68 +2,28 @@
 include 'nav.php';
 ?>
 <main>
-    <head>
-        <!-- Your existing head section -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Player Data</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-            #layoutSidenav_content {
-                margin: 20px;
-            }
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-            }
-
-            th,
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            .btn {
-                text-decoration: none;
-                padding: 8px 12px;
-                margin: 2px;
-                border-radius: 4px;
-                display: inline-block;
-            }
-
-            .btn-primary {
-                background-color: #007bff;
-                color: #fff;
-            }
-
-            .btn-danger {
-                background-color: #dc3545;
-                color: #fff;
-            }
-        </style>
-    </head>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <div class="container">
-                    <h2>Player Data</h2>
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <div class="container-fluid px-4">
+        <div class="container">
+           
+<h2>Player Data</h2>
                     <table>
                         <thead>
                             <tr>
@@ -100,20 +60,21 @@ include 'nav.php';
                             ?>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </main>
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        </div>
     </div>
 </main>
+<footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+            <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+</div>
