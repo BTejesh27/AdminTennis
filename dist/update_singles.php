@@ -3,32 +3,28 @@ include 'nav.php';
 include 'connect.php';
 
 // Update data
-if (isset($_POST['submit'])) {
+if (isset($_POST['update'])) {
     $mid = $_POST['mid'];
-    $tid =  $_POST['tid'];
-    
+    $tid = $_POST['tid'];
     $pid1 = $_POST['pid1'];
-    $pid2 =  $_POST['pid2'];
-    $score1 =  $_POST['score1'];
+    $pid2 = $_POST['pid2'];
+    $score1 = $_POST['score1'];
     $score2 = $_POST['score2'];
     $win = $_POST['win'];
-   
 
-    $updateQuery = "UPDATE singles SET   pid1 = ?, pid2 = ? ,score1= ?, score2 = ?,win= ? WHERE mid = ?";
+    $updateQuery = "UPDATE singles SET tid = ?, pid1 = ?, pid2 = ?,  score1 = ?, score2 = ?, win = ?, timestamp = ? WHERE mid = ?";
 
-    
-        // ... (continue for other fields)
-   $stmt = mysqli_prepare($conn, $updateQuery);
-    
+    $stmt = mysqli_prepare($conn, $updateQuery);
+
     if ($stmt === false) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "ssssssi", $tid, $pid1, $pid2, $score1, $score2, $win,  $mid);
+        mysqli_stmt_bind_param($stmt, "sssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win, $timestamp, $mid);
 
         if (mysqli_stmt_execute($stmt)) {
             // Success response
-            echo json_encode(array('News item updated successfully.'));
+            echo  "<script>alert('Success!');</script>";
         } else {
             // Error response
             echo json_encode(array('status' => 'error', 'message' => 'Error updating news item: ' . mysqli_stmt_error($stmt)));
@@ -123,8 +119,7 @@ if (isset($_POST['submit'])) {
         pid2 = ?,
         score1 = ?,
         score2 = ?,
-        win = ?,
-       
+        win = ?
         WHERE mid = ?";
     
     $stmt = mysqli_prepare($conn, $updateQuery);
@@ -282,5 +277,5 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </div>
-    </div>
+   
 </main>
