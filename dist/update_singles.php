@@ -56,7 +56,7 @@ if (isset($_POST['update'])) {
 <html>
 <head>
     
-    <title>Update News Item</title>
+    <title>Update Singles Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
