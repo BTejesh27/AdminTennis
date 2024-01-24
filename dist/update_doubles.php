@@ -43,7 +43,7 @@ if (isset($_POST['update'])) {
 <html>
 <head>
     
-    <title>Update News Item</title>
+    <title>Update Doubles Score</title>
     <style>
         body {
             font-family: Arial, sans-serif;
