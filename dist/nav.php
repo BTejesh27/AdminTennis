@@ -88,7 +88,7 @@ $userPassword = $_SESSION['user_password'];
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="login.php">New Player</a>
                                 <a class="nav-link" href="players.php">Player Details</a>
-                                <a class="nav-link" href="players.php"> Teams Player Details</a>
+                                <a class="nav-link" href="teamsdata.php"> Teams Player Details</a>
 
                             </nav>
                         </div>
