@@ -69,6 +69,8 @@
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="login.php">New Player</a>
                                 <a class="nav-link" href="players.php">Player Details</a>
+                                <a class="nav-link" href="players.php"> Teams Player Details</a>
+
                             </nav>
                         </div>
                         <a class="nav-link" href="category.php">
