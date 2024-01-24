@@ -1,3 +1,22 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_password'])) {
+    // User is not logged in, redirect to login page
+    header("Location: admin.php");
+    exit;
+}
+
+// Continue with the rest of your index.php code
+
+// You can also use $_SESSION['user_password'] to access the user's password if needed
+$userPassword = $_SESSION['user_password'];
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
