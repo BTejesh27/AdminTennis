@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start the session
+
 // Check if the form is submitted
 if (isset($_POST['upload'])) {
     // Get user input
@@ -9,6 +11,9 @@ if (isset($_POST['upload'])) {
 
     // Check if the provided password is valid
     if ($password === $validPassword) {
+        // Store the password in a session variable
+        $_SESSION['user_password'] = $password;
+
         // Successful login, redirect to a protected page
         header("Location: index.php");
         exit;
@@ -18,6 +23,7 @@ if (isset($_POST['upload'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
