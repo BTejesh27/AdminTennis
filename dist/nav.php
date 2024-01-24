@@ -89,6 +89,7 @@ $userPassword = $_SESSION['user_password'];
                                 <a class="nav-link" href="login.php">New Player</a>
                                 <a class="nav-link" href="players.php">Player Details</a>
                                 <a class="nav-link" href="teamsdata.php"> Teams Player Details</a>
+                                
 
                             </nav>
                         </div>
