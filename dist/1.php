@@ -77,7 +77,7 @@ $userPassword = $_SESSION['user_password'];
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
+    <!-- <script>
     $(document).ready(function() {
         function updateScores() {
             $.ajax({
@@ -108,7 +108,7 @@ $userPassword = $_SESSION['user_password'];
         // Reload the page every 3 seconds
         setInterval(function() {
             location.reload();
-        }, 10000); // 3 second
+        }, 3000); // 3 second
     });
 
     $(document).ready(function() {
@@ -130,8 +130,8 @@ $userPassword = $_SESSION['user_password'];
             console.error('Error with SSE:', event);
             eventSource.close();
         };
-    });
-</script>
+    }); 
+</script>-->
 
 </head>
 
@@ -146,7 +146,9 @@ $userPassword = $_SESSION['user_password'];
                         <thead>
                             <tr>
                                 <th>Player 1</th>
+                                <th>Player 1 Name</th>
                                 <th>Player 2</th>
+                                <th>Player 2 Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -160,7 +162,11 @@ $userPassword = $_SESSION['user_password'];
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td>{$row['player1']}</td>";
+                                echo "<td>{$row['pname']}</td>";
+
                                 echo "<td>{$row['player2']}</td>";
+                                echo "<td>{$row['pname2']}</td>";
+
                                 echo "</tr>";
                             }
 
@@ -184,6 +190,16 @@ $userPassword = $_SESSION['user_password'];
             </div>
         </div>
     </footer>
+    <script>
+         
+        $(document).ready(function () {
+            setInterval(function () {
+                // Reload the content of the container every 3 seconds
+                $("#scoreTable").load(location.href + " #scoreTable");
+            }, 1000);
+        });
+    </script>
+        
 </body>
 
 </html>
