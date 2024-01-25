@@ -1,5 +1,5 @@
 <?php
-session_start(); // Start the session
+session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_password'])) {
@@ -8,49 +8,79 @@ if (!isset($_SESSION['user_password'])) {
     exit;
 }
 
-// Continue with the rest of your index.php code
-
-// You can also use $_SESSION['user_password'] to access the user's password if needed
-$userPassword = $_SESSION['user_password'];
-?>
-
-
-<?php
 include 'nav.php';
 include 'connect.php';
 
-// Update data
-if (isset($_POST['update'])) {
-    $mid = $_POST['mid'];
-    $tid = $_POST['tid'];
-    $pid1 = $_POST['pid1'];
-    $pid2 = $_POST['pid2'];
-    $score1 = $_POST['score1'];
-    $score2 = $_POST['score2'];
-    $win = $_POST['win'];
+// Function to sanitize input
+function sanitizeInput($conn, $input) {
+    return mysqli_real_escape_string($conn, $input);
+}
 
-    $updateQuery = "UPDATE singles SET tid = ?, pid1 = ?, pid2 = ?,  score1 = ?, score2 = ?, win = ?, timestamp = ? WHERE mid = ?";
-
+// Function to handle update logic
+function updateMatchData($conn, $mid, $tid, $pid1, $pid2, $score1, $score2, $win) {
+    $updateQuery = "UPDATE singles SET tid = ?, pid1 = ?, pid2 = ?, score1 = ?, score2 = ?, win = ? WHERE mid = ?";
     $stmt = mysqli_prepare($conn, $updateQuery);
 
     if ($stmt === false) {
         // Check if preparing the statement failed
-        echo "Error preparing update statement: " . mysqli_error($conn);
-    } else {
-        mysqli_stmt_bind_param($stmt, "sssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win, $timestamp, $mid);
+        echo "<script>alert('Error preparing update statement: " . mysqli_error($conn) . "');</script>";
+    }
 
-        if (mysqli_stmt_execute($stmt)) {
-            // Success response
-            echo  "<script>alert('Success!');</script>";
-        } else {
-            // Error response
-            echo json_encode(array('status' => 'error', 'message' => 'Error updating news item: ' . mysqli_stmt_error($stmt)));
-        }
+    mysqli_stmt_bind_param($stmt, "ssssssi", $tid, $pid1, $pid2, $score1, $score2, $win, $mid);
+
+    if (mysqli_stmt_execute($stmt)) {
+        // Success response
+        echo "<script>alert('Success!');</script>";
+    } else {
+        // Error response
+        echo "<script>alert('Error updating match data: " . mysqli_stmt_error($stmt) . "');</script>";
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+// Process form submission
+if (isset($_POST['update'])) {
+    $mid = sanitizeInput($conn, $_POST['mid']);
+    $tid = sanitizeInput($conn, $_POST['tid']);
+    $pid1 = sanitizeInput($conn, $_POST['pid1']);
+    $pid2 = sanitizeInput($conn, $_POST['pid2']);
+    $score1 = sanitizeInput($conn, $_POST['score1']);
+    $score2 = sanitizeInput($conn, $_POST['score2']);
+    $win = sanitizeInput($conn, $_POST['win']);
+
+    updateMatchData($conn, $mid, $tid, $pid1, $pid2, $score1, $score2, $win);
+}
+
+// Retrieve existing data from the database
+if (isset($_GET['mid'])) {
+    $id = sanitizeInput($conn, $_GET['mid']);
+    $selectQuery = "SELECT * FROM singles WHERE mid = ?";
+    $stmt = mysqli_prepare($conn, $selectQuery);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $row = mysqli_fetch_assoc($result);
+
+        // Populate variables with existing data
+        $mid = $row['mid'];
+        $tid = $row['tid'];
+        $pid1 = $row['pid1'];
+        $pid2 = $row['pid2'];
+        $score1 = $row['score1'];
+        $score2 = $row['score2'];
+        $win = $row['win'];
 
         mysqli_stmt_close($stmt);
+    } else {
+        echo "<script>alert('Error selecting data: " . mysqli_error($conn) . "');</script>";
     }
 }
 ?>
+    
+
 
 <!DOCTYPE html>
 <html>
