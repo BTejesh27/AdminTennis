@@ -105,7 +105,7 @@ $userPassword = $_SESSION['user_password'];
                             <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
                             Update doubles
                         </a>
-                        <a class="nav-link" href="updateplayer_points.php">
+                        <a class="nav-link" href="player_points.php">
                             <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
                             Update Player points
                         </a>
