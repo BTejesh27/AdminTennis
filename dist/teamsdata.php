@@ -45,8 +45,8 @@ include 'nav.php';
 
                         <th>Team ID</th>
                         <th>pid 1</th>
-                        <th>pid 2</th>
                         <th>Player 1</th>
+                        <th>pid 2</th>
                         <th>Player 2</th>
 
                     </tr>
@@ -66,8 +66,8 @@ include 'nav.php';
                         echo "<tr>";
                         echo "<td>{$row['teamid']}</td>";
                         echo "<td>{$row['pid1']}</td>";
-                        echo "<td>{$row['pid2']}</td>";
                         echo "<td>{$row['player1_name']}</td>";
+                        echo "<td>{$row['pid2']}</td>";
                         echo "<td>{$row['player2_name']}</td>";
                         echo "</tr>";
                     }
