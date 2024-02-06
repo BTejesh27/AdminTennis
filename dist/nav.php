@@ -89,7 +89,7 @@ $userPassword = $_SESSION['user_password'];
                                 <a class="nav-link" href="login.php">New Player</a>
                                 <a class="nav-link" href="players.php">Player Details</a>
                                 <a class="nav-link" href="teamsdata.php"> Teams Player Details</a>
-                                
+
 
                             </nav>
                         </div>
@@ -98,16 +98,20 @@ $userPassword = $_SESSION['user_password'];
                             Category
                         </a>
                         <a class="nav-link" href="singles_r.php">
-                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
-                                        Update Singles
-                                    </a>
-                                    <a class="nav-link" href="doubles_r.php">
-                                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
-                                        Update doubles
-                                    </a>
-                        <!-- <a class="nav-link" href="player_points.php"> -->
                             <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
-                            <!-- Players points
+                            Update Singles
+                        </a>
+                        <a class="nav-link" href="doubles_r.php">
+                            <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
+                            Update doubles
+                        </a>
+                        <a class="nav-link" href="updateplayer_points.php">
+                            <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
+                            Update Player_points
+                        </a>
+                        <!-- <a class="nav-link" href="player_points.php"> -->
+                        <!-- <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div> -->
+                        <!-- Players points
                         </a> -->
 
 

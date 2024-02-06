@@ -14,88 +14,69 @@ if (!isset($_SESSION['user_password'])) {
 $userPassword = $_SESSION['user_password'];
 ?>
 
+
 <?php
 include 'nav.php';
 ?>
 <main>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-5">
-                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                    <div class="card-header">
-                        <h3 class="text-center font-weight-light my-4">Player Points</h3>
-                    </div>
-                    <div class="card-body">
-                        <form method="post" action="">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputpid" type="name" placeholder="pid" name="pid" required />
-                                <label for="inputmatchid">Playerid</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputmat" type="name" placeholder="mat" name="mat" required />
-                                <label for="inputmatchid">Matches Played</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="inputpoints" type="name" placeholder="points" name="points" required />
-                                <label for="inputmatchid">Points</label>
-                            </div>
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
 
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <div class="container-fluid px-4">
+        <div class="container">
+        <h2>Player points</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>pid</th>
+                                <th>tid</th>
+                                <th>mid</th>
+                                <th>category</th>
+                                <th>points</th>
+                                <th>Update</th> <!-- New column for the Update button -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include 'connect.php';
 
-                            <div>
+                            $sql = "SELECT * FROM points";
+                            $result = mysqli_query($conn, $sql);
 
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>{$row['pid']}</td>";
+                                echo "<td>{$row['tid']}</td>";
+                                echo "<td>{$row['mid']}</td>";
+                                echo "<td>{$row['category']}</td>";
+                                echo "<td>{$row['points']}</td>";
+                              
+                                // Add the Update button with a link to the update_singles.php page
+                                echo "<td><a href='updatepp.php?mid={$row['mid']}' class='btn btn-primary m-2'>Update</a></td>";
+                                echo "</tr>";
+                            }
 
-                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
-
-
-                                </div>
-
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
         </div>
     </div>
-
-    <?php
-include 'connect.php';
-
-if (isset($_POST['submit'])) {
-    // Retrieve form data
-    $pid = $_POST['pid'];
-    $mat = $_POST['mat'];
-    $points = $_POST['points'];
-
-    // Check if the record already exists in the database
-    $checkQuery = "SELECT * FROM player_score WHERE pid = '$pid'";
-    $result = $conn->query($checkQuery);
-
-    if ($result->num_rows > 0) {
-        // Update the existing record by adding new values to the current values
-        $updateQuery = "UPDATE player_score SET mat = mat + '$mat', points = points + '$points' WHERE pid = '$pid'";
-        if ($conn->query($updateQuery) === TRUE) {
-            echo "<script>alert('Success!');</script>";
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
-    } else {
-        // Insert a new record
-        $insertQuery = "INSERT INTO player_score (pid, mat, points) VALUES ('$pid', '$mat', '$points')";
-        if ($conn->query($insertQuery) === TRUE) {
-            echo "<script>alert('Success!');</script>";
-        } else {
-            echo "Error: " . $insertQuery . "<br>" . $conn->error;
-        }
-    }
-}
-
-$conn->close();
-?>
-
-    
 </main>
 <footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
@@ -109,5 +90,6 @@ $conn->close();
         </div>
     </div>
 </footer>
+</div>
 </div>
 </div>
