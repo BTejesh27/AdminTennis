@@ -114,7 +114,7 @@ include 'nav.php';
         $teamid2 = $_POST['teamid2'];
         $score1 = $_POST['score1'];
         $score2 = $_POST['score2'];
-        $win= $_POST['win'];
+        $win= $_POST['win1'];
         $timestamp = $_POST['timestamp'];
 
         $insertQuery = "INSERT INTO doubles(mid,tid,level,catid,mdate,mtime,teamid1,teamid2,score1,score2,win,timestamp) VALUES ('$mid', '$tid', '$level', '$catid', '$mdate', '$mtime', '$teamid1', '$teamid2',  '$score1', '$score2','$win', '$timestamp')";

@@ -18,9 +18,9 @@ function sanitizeInput($conn, $input)
 }
 
 // Function to handle update logic
-function updateMatchData($conn, $mid, $tid, $pid1, $pid2, $mdate, $mtime, $score1, $score2, $win)
+function updateMatchData($conn, $pid, $tid, $mid, $category, $points)
 {
-    $updateQuery = "UPDATE singles SET tid = ?, pid1 = ?, pid2 = ?, mdate = ?, mtime = ?, score1 = ?, score2 = ?, win = ? WHERE mid = ?";
+    $updateQuery = "UPDATE points SET tid = ?, mid = ?, category = ?, points=? WHERE pid = ?";
     $stmt = mysqli_prepare($conn, $updateQuery);
 
     if ($stmt === false) {
@@ -28,7 +28,7 @@ function updateMatchData($conn, $mid, $tid, $pid1, $pid2, $mdate, $mtime, $score
         echo "<script>alert('Error preparing update statement: " . mysqli_error($conn) . "');</script>";
     }
 
-    mysqli_stmt_bind_param($stmt, "ssssssssi", $tid, $pid1, $pid2, $mdate, $mtime, $score1, $score2, $win, $mid);
+    mysqli_stmt_bind_param($stmt, "ssssi", $tid, $mid, $category, $points, $pid,);
 
     if (mysqli_stmt_execute($stmt)) {
         // Success response
@@ -42,42 +42,37 @@ function updateMatchData($conn, $mid, $tid, $pid1, $pid2, $mdate, $mtime, $score
 }
 
 // Process form submission
+// Process form submission
 if (isset($_POST['update'])) {
-    $mid = sanitizeInput($conn, $_POST['mid']);
+    $pid = sanitizeInput($conn, $_POST['pid']);
     $tid = sanitizeInput($conn, $_POST['tid']);
-    $pid1 = sanitizeInput($conn, $_POST['pid1']);
-    $pid2 = sanitizeInput($conn, $_POST['pid2']);
-    $mdate = sanitizeInput($conn, $_POST['mdate']);
-    $mtime = sanitizeInput($conn, $_POST['mtime']);
-    $score1 = sanitizeInput($conn, $_POST['score1']);
-    $score2 = sanitizeInput($conn, $_POST['score2']);
-    $win = sanitizeInput($conn, $_POST['win']);
+    $mid = sanitizeInput($conn, $_POST['mid']);
+    $category = sanitizeInput($conn, $_POST['category']);
+    $points = sanitizeInput($conn, $_POST['points']);
 
-    updateMatchData($conn, $mid, $tid, $pid1, $pid2, $mdate, $mtime, $score1, $score2, $win);
+    updateMatchData($conn, $pid, $tid, $mid, $category, $points);
 }
 
+
 // Retrieve existing data from the database
-if (isset($_GET['mid'])) {
-    $id = sanitizeInput($conn, $_GET['mid']);
-    $selectQuery = "SELECT * FROM singles WHERE mid = ?";
+if (isset($_GET['pid'])) {
+    $pid = sanitizeInput($conn, $_GET['pid']);
+    $selectQuery = "SELECT * FROM points WHERE pid = ?";
     $stmt = mysqli_prepare($conn, $selectQuery);
 
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_bind_param($stmt, "i", $pid);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $row = mysqli_fetch_assoc($result);
 
         // Populate variables with existing data
-        $mid = $row['mid'];
+        $pid = $row['pid'];
         $tid = $row['tid'];
-        $pid1 = $row['pid1'];
-        $pid2 = $row['pid2'];
-        $mdate = $row['mdate'];
-        $mtime = $row['mtime'];
-        $score1 = $row['score1'];
-        $score2 = $row['score2'];
-        $win = $row['win'];
+        $mid = $row['mid'];
+        $category = $row['category'];
+        $points = $row['points'];
+
 
         mysqli_stmt_close($stmt);
     } else {
@@ -93,7 +88,7 @@ if (isset($_GET['mid'])) {
 
 <head>
 
-    <title>Update Singles Data</title>
+    <title>Update player points Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -152,39 +147,28 @@ if (isset($_GET['mid'])) {
 include "connect.php";
 
 // Initialize variables to store existing data
-$mid = "";
+$pid = "";
 $tid = "";
-$pid1 = "";
-$pid2 = "";
-$mdate = "";
-$mtime = "";
-$score1 = "";
-$score2 = "";
-$win = "";
+$mid = "";
+$category = "";
+$points = "";
 
 
 if (isset($_POST['submit'])) {
-    $mid = $_POST['mid'];
+    $pid = $_POST['pid'];
     $tid =  $_POST['tid'];
-    $pid1 =  $_POST['pid1'];
-    $pid2 =  $_POST['pid2'];
-    $mdate =  $_POST['mdate'];
-    $mtime =  $_POST['mtime'];
-    $score1 = $_POST['score1'];
-    $score2 =  $_POST['score2'];
-    $win =  $_POST['win'];
+    $mid =  $_POST['mid'];
+    $category =  $_POST['category'];
+    $points =  $_POST['points'];
 
 
-    $updateQuery = "UPDATE singles SET
+
+    $updateQuery = "UPDATE points SET
         tid = ?,
-        pid1 = ?,
-        pid2 = ?,
-        mdate = ?,
-         mtime = ?, 
-        score1 = ?,
-        score2 = ?,
-        win = ?
-        WHERE mid = ?";
+        mid = ?,
+        category = ?,
+        points = ?,
+        WHERE pid = ?";
 
     $stmt = mysqli_prepare($conn, $updateQuery);
 
@@ -192,7 +176,7 @@ if (isset($_POST['submit'])) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "ssssssssi", $tid,  $pid1, $pid2, $mdate, $mtime, $score1, $score2, $win,  $mid);
+        mysqli_stmt_bind_param($stmt, "ssssi", $tid, $mid, $category, $points, $pid,);
 
         if (mysqli_stmt_execute($stmt)) {
             // Success response
@@ -206,27 +190,24 @@ if (isset($_POST['submit'])) {
     }
 } else {
     // Retrieve existing data from the database
-    if (isset($_GET['mid'])) {
-        $id = $_GET['mid'];
-        $selectQuery = "SELECT * FROM singles WHERE mid = ?";
+    if (isset($_GET['pid'])) {
+        $pid = sanitizeInput($conn, $_GET['pid']);
+        $selectQuery = "SELECT * FROM points WHERE pid = ?";
         $stmt = mysqli_prepare($conn, $selectQuery);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, "i", $id);
+            mysqli_stmt_bind_param($stmt, "i", $pid);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
 
             // Populate variables with existing data
-            $mid = $row['mid'];
+            $pid = $row['pid'];
             $tid = $row['tid'];
-            $pid1 = $row['pid1'];
-            $pid2 = $row['pid2'];
-            $mdate = $row['mdate'];
-            $mtime = $row['mtime'];
-            $score1 = $row['score1'];
-            $score2 = $row['score2'];
-            $win = $row['win'];
+            $mid = $row['mid'];
+            $category = $row['category'];
+            $points = $row['points'];
+
 
 
             mysqli_stmt_close($stmt);
@@ -246,7 +227,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Match Data</title>
+    <title>Update Player points Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -312,47 +293,27 @@ if (isset($_POST['submit'])) {
 
 <body>
     <h1>Update Match Data</h1>
-    <form method="post">
+    <form method="post" action="">
         <div class="form-floating mb-3">
-            <input class="form-control" id="inputmatchidToUpdate" type="text" placeholder="Matchid to Update" name="mid" value="<?php echo $mid; ?>" />
-            <label for="inputmatchidToUpdate">Match id </label>
+            <input class="form-control" id="inputplayerid" type="name" placeholder="pid" name="pid" value="<?php echo $pid; ?>"  required />
+            <label for="inputplayerid">Player id</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="inputtournamentid" type="text" placeholder="tournamentid" name="tid" value="<?php echo $tid; ?>" required />
+            <input class="form-control" id="inputtournamentid" type="name" placeholder="tournamentid" name="tid" value="<?php echo $tid; ?>" required />
             <label for="inputtournamentid">Tournamentid</label>
         </div>
-
         <div class="form-floating mb-3">
-            <input class="form-control" id="inputpid1" type="name" placeholder="playerid1" name="pid1" value="<?php echo $pid1; ?>" required />
-            <label for="inputpid1">Playerid 1</label>
+            <input class="form-control" id="inputpid" type="name" placeholder="mid" name="mid" value="<?php echo $mid; ?>" required />
+            <label for="inputmatchid">Match Id</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="inputpid2" type="name" placeholder="playerid2" name="pid2" value="<?php echo $pid2; ?>" required />
-            <label for="inputpid2">Playerid 2</label>
+            <input class="form-control" id="inputcategoryid" type="name" placeholder="catid" name="category" value="<?php echo $category; ?>" required />
+            <label for="inputcategoryid">Category Id</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="inputmatchdate" type="name" placeholder="Matchdate" name="mdate"  value="<?php echo $mdate; ?>" required />
-            <label for="inputmatchdate">Matchdate</label>
+            <input class="form-control" id="inputpoints" type="name" placeholder="points" name="points"value="<?php echo $points; ?>"  required />
+            <label for="inputmatchid">Points</label>
         </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputmatchtime" type="name" placeholder="matchtime" name="mtime" value="<?php echo $mtime; ?>" required />
-            <label for="inputmatchtime">Match time</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputscore1" type="name" placeholder="score1" name="score1" value="<?php echo $score1; ?>" />
-            <label for="inputscore">Score1</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputscore2" type="name" placeholder="score2" name="score2" value="<?php echo $score2; ?>" />
-            <label for="inputscore">Score2</label>
-        </div>
-
-
-        <div class="form-floating mb-3">
-            <input class="form-control" id="inputwin" type="name" placeholder="win" name="win" value="<?php echo $win; ?>" />
-            <label for="inputwin">Win</label>
-        </div>
-
 
         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
             <button class="btn btn-primary" type="submit" name="update">Update Data</button>

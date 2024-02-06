@@ -46,6 +46,8 @@ include 'nav.php';
                                 <th>mid</th>
                                 <th>pid1</th>
                                 <th>pid2</th>
+                                <th>mdate</th>
+                                <th>mtime</th>
                                 <th>score1</th>
                                 <th>score2</th>
                                 <th>win</th>
@@ -64,6 +66,8 @@ include 'nav.php';
                                 echo "<td>{$row['mid']}</td>";
                                 echo "<td>{$row['pid1']}</td>";
                                 echo "<td>{$row['pid2']}</td>";
+                                echo "<td>{$row['mdate']}</td>";
+                                echo "<td>{$row['mtime']}</td>";
                                 echo "<td>{$row['score1']}</td>";
                                 echo "<td>{$row['score2']}</td>";
                                 echo "<td>{$row['win']}</td>";

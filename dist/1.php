@@ -1,20 +1,3 @@
-<?php
-session_start(); // Start the session
-
-// Check if the user is logged in
-if (!isset($_SESSION['user_password'])) {
-    // User is not logged in, redirect to login page
-    header("Location: admin.php");
-    exit;
-}
-
-// Continue with the rest of your index.php code
-
-// You can also use $_SESSION['user_password'] to access the user's password if needed
-$userPassword = $_SESSION['user_password'];
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +60,7 @@ $userPassword = $_SESSION['user_password'];
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
+    <!-- <script>
     $(document).ready(function() {
         function updateScores() {
             $.ajax({
@@ -108,7 +91,7 @@ $userPassword = $_SESSION['user_password'];
         // Reload the page every 3 seconds
         setInterval(function() {
             location.reload();
-        }, 10000); // 3 second
+        }, 3000); // 3 second
     });
 
     $(document).ready(function() {
@@ -130,13 +113,13 @@ $userPassword = $_SESSION['user_password'];
             console.error('Error with SSE:', event);
             eventSource.close();
         };
-    });
-</script>
+    }); 
+</script>-->
 
 </head>
 
 <body>
-    <?php include 'nav.php'; ?>
+
     <main>
         <div id="layoutSidenav_content">
             <div class="container-fluid px-4">
@@ -145,13 +128,18 @@ $userPassword = $_SESSION['user_password'];
                     <table id="scoreTable">
                         <thead>
                             <tr>
-                                <th>Player 1</th>
-                                <th>Player 2</th>
+                                <th>Player1 name</th>
+                                <th>Player1 score</th>
+                                <th>Player2 name</th>
+                                <th>Player2 score</th>
+                                <th>time</th>
+                                <th>date</th>
+                                <th>categoty</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            include 'config.php';
+                            include 'connect.php';
 
                             $sql = "SELECT * FROM scores";
 
@@ -159,8 +147,14 @@ $userPassword = $_SESSION['user_password'];
 
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
-                                echo "<td>{$row['player1']}</td>";
-                                echo "<td>{$row['player2']}</td>";
+                                echo "<td>{$row['pname']}</td>";
+                                echo "<td>{$row['Player1']}</td>";
+                                echo "<td>{$row['pname2']}</td>";
+                                echo "<td>{$row['Player2']}</td>";
+                                echo "<td>{$row['mdate']}</td>";
+                                echo "<td>{$row['mtime']}</td>";
+                                echo "<td>{$row['category']}</td>";
+
                                 echo "</tr>";
                             }
 
@@ -184,6 +178,16 @@ $userPassword = $_SESSION['user_password'];
             </div>
         </div>
     </footer>
+    <script>
+         
+        $(document).ready(function () {
+            setInterval(function () {
+                // Reload the content of the container every 3 seconds
+                $("#scoreTable").load(location.href + " #scoreTable");
+            }, 1000);
+        });
+    </script>
+        
 </body>
 
 </html>

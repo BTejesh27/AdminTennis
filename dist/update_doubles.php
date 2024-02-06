@@ -24,15 +24,16 @@ include 'connect.php';
 if (isset($_POST['update'])) {
     $mid = $_POST['mid'];
     $tid = $_POST['tid'];
-   
     $teamid1 = $_POST['teamid1'];
     $teamid2 = $_POST['teamid2'];
+    $mdate =  $_POST['mdate'];
+    $mtime =  $_POST['mtime'];
     $score1 = $_POST['score1'];
     $score2 = $_POST['score2'];
     $win = $_POST['win'];
    
 
-    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, score1 = ?, score2 = ?, win = ?, timestamp = ? WHERE mid = ?";
+    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, mdate = ?, mtime= ?, score1 = ?, score2 = ?, win = ?, timestamp = ? WHERE mid = ?";
 
     $stmt = mysqli_prepare($conn, $updateQuery);
     
@@ -40,7 +41,7 @@ if (isset($_POST['update'])) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "sssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win, $timestamp, $mid);
+        mysqli_stmt_bind_param($stmt, "sssssssssi", $tid, $teamid1, $teamid2, $mdate, $mtime, $score1, $score2, $win, $timestamp, $mid);
     
         if (mysqli_stmt_execute($stmt)) {
             // Success response
@@ -140,7 +141,7 @@ if (isset($_POST['submit'])) {
     $win =  $_POST['win'];
    
 
-    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, score1 = ?, score2 = ?, win = ?, WHERE mid = ?";
+    $updateQuery = "UPDATE doubles SET tid = ?, teamid1 = ?, teamid2 = ?, mdate = ?, mtime= ?, score1 = ?, score2 = ?, win = ?, WHERE mid = ?";
 
     
     $stmt = mysqli_prepare($conn, $updateQuery);
@@ -149,7 +150,7 @@ if (isset($_POST['submit'])) {
         // Check if preparing the statement failed
         echo "Error preparing update statement: " . mysqli_error($conn);
     } else {
-        mysqli_stmt_bind_param($stmt, "ssssssi", $tid, $teamid1, $teamid2, $score1, $score2, $win,  $mid);
+        mysqli_stmt_bind_param($stmt, "ssssssssi", $tid, $teamid1, $teamid2, $mdate, $mtime, $score1, $score2, $win,  $mid);
 
         if (mysqli_stmt_execute($stmt)) {
             // Success response
@@ -177,9 +178,10 @@ if (isset($_POST['submit'])) {
             // Populate variables with existing data
             $mid = $row['mid'];
             $tid = $row['tid'];
-          
             $teamid1 = $row['teamid1'];
             $teamid2 = $row['teamid2'];
+            $mdate = $row['mdate'];
+            $mtime = $row['mtime'];
             $score1 = $row['score1'];
             $score2 = $row['score2'];
             $win = $row['win'];
@@ -274,6 +276,14 @@ if (isset($_POST['submit'])) {
         <div class="form-floating mb-3">
             <input class="form-control" id="inputpid2" type="name" placeholder="teamid1" name="teamid2" value="<?php echo $teamid2; ?>" required />
             <label for="inputpid2">Teamid 2</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputmatchdate" type="name" placeholder="Matchdate" name="mdate"  value="<?php echo $mdate; ?>" required />
+            <label for="inputmatchdate">Matchdate</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="inputmatchtime" type="name" placeholder="matchtime" name="mtime" value="<?php echo $mtime; ?>" required />
+            <label for="inputmatchtime">Match time</label>
         </div>
         <div class="form-floating mb-3">
             <input class="form-control" id="inputscore1" type="name" placeholder="score1" name="score1" value="<?php echo $score1; ?>" />
